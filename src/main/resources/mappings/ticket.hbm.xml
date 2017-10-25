@@ -12,14 +12,14 @@
 
 <hibernate-mapping package="beans.models">
 
-    <class name="Ticket" table="TICKET">
+    <class name="com.booking.service.beans.models.Ticket" table="TICKET">
         <id name="id" column="ID">
             <generator class="identity"/>
         </id>
-        <many-to-one name="event" class="beans.models.Event" column="EVENT" fetch="join" lazy="false"/>
+        <many-to-one name="event" class="com.booking.service.beans.models.Event" column="EVENT" fetch="join" lazy="false"/>
         <property name="dateTime" type="java.time.LocalDateTime" column="DATE_TIME"/>
         <property name="seats" column="SEATS" type="string"/>
-        <many-to-one name="user" class="beans.models.User" column="USER" fetch="join" lazy="false"/>
+        <many-to-one name="user" class="com.booking.service.beans.models.User" column="USER" fetch="join" lazy="false"/>
         <property name="price" column="PRICE" type="double"/>
     </class>
 

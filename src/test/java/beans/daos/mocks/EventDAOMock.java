@@ -1,7 +1,7 @@
 package beans.daos.mocks;
 
-import beans.daos.db.EventDAOImpl;
-import beans.models.Event;
+import com.booking.service.beans.daos.db.EventDAOImpl;
+import com.booking.service.beans.models.Event;
 
 import java.util.List;
 

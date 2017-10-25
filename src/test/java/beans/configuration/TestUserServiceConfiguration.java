@@ -1,9 +1,9 @@
 package beans.configuration;
 
 import beans.daos.mocks.UserDAOMock;
-import beans.models.User;
-import beans.services.UserService;
-import beans.services.UserServiceImpl;
+import com.booking.service.beans.models.User;
+import com.booking.service.beans.services.UserService;
+import com.booking.service.beans.services.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

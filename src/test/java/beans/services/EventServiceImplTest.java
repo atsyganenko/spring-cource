@@ -1,13 +1,14 @@
 package beans.services;
 
-import beans.configuration.AppConfiguration;
+import com.booking.service.beans.configuration.AppConfiguration;
 import beans.configuration.TestEventServiceConfiguration;
-import beans.configuration.db.DataSourceConfiguration;
-import beans.configuration.db.DbSessionFactory;
+import com.booking.service.beans.configuration.db.DataSourceConfiguration;
+import com.booking.service.beans.configuration.db.DbSessionFactory;
 import beans.daos.mocks.EventDAOMock;
-import beans.models.Auditorium;
-import beans.models.Event;
-import beans.models.Rate;
+import com.booking.service.beans.models.Auditorium;
+import com.booking.service.beans.models.Event;
+import com.booking.service.beans.models.Rate;
+import com.booking.service.beans.services.EventService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

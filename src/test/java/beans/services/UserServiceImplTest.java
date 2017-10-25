@@ -1,11 +1,12 @@
 package beans.services;
 
-import beans.configuration.AppConfiguration;
+import com.booking.service.beans.configuration.AppConfiguration;
 import beans.configuration.TestUserServiceConfiguration;
-import beans.configuration.db.DataSourceConfiguration;
-import beans.configuration.db.DbSessionFactory;
+import com.booking.service.beans.configuration.db.DataSourceConfiguration;
+import com.booking.service.beans.configuration.db.DbSessionFactory;
 import beans.daos.mocks.UserDAOMock;
-import beans.models.User;
+import com.booking.service.beans.models.User;
+import com.booking.service.beans.services.UserService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

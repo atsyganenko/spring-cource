@@ -1,18 +1,19 @@
 package beans.aspects;
 
 import beans.aspects.mocks.CountAspectMock;
-import beans.configuration.AppConfiguration;
-import beans.configuration.db.DataSourceConfiguration;
-import beans.configuration.db.DbSessionFactory;
+import com.booking.service.beans.aspects.CounterAspect;
+import com.booking.service.beans.configuration.AppConfiguration;
+import com.booking.service.beans.configuration.db.DataSourceConfiguration;
+import com.booking.service.beans.configuration.db.DbSessionFactory;
 import beans.daos.mocks.BookingDAOBookingMock;
 import beans.daos.mocks.DBAuditoriumDAOMock;
 import beans.daos.mocks.EventDAOMock;
 import beans.daos.mocks.UserDAOMock;
-import beans.models.Event;
-import beans.models.Ticket;
-import beans.models.User;
-import beans.services.BookingService;
-import beans.services.EventService;
+import com.booking.service.beans.models.Event;
+import com.booking.service.beans.models.Ticket;
+import com.booking.service.beans.models.User;
+import com.booking.service.beans.services.BookingService;
+import com.booking.service.beans.services.EventService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +61,7 @@ public class TestCounterAspect {
     private UserDAOMock userDAOMock;
 
     @Autowired
-    private CounterAspect       counterAspect;
+    private CounterAspect counterAspect;
 
     @Autowired
     private DBAuditoriumDAOMock auditoriumDAOMock;

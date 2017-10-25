@@ -12,7 +12,7 @@
 
 <hibernate-mapping package="beans.models">
 
-    <class name="User" table="USER">
+    <class name="com.booking.service.beans.models.User" table="USER">
         <id name="id" column="ID">
             <generator class="identity"/>
         </id>

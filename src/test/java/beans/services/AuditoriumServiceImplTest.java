@@ -1,10 +1,11 @@
 package beans.services;
 
-import beans.configuration.AppConfiguration;
-import beans.configuration.db.DataSourceConfiguration;
-import beans.configuration.db.DbSessionFactory;
+import com.booking.service.beans.configuration.AppConfiguration;
+import com.booking.service.beans.configuration.db.DataSourceConfiguration;
+import com.booking.service.beans.configuration.db.DbSessionFactory;
 import beans.daos.mocks.DBAuditoriumDAOMock;
-import beans.models.Auditorium;
+import com.booking.service.beans.models.Auditorium;
+import com.booking.service.beans.services.AuditoriumService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class AuditoriumServiceImplTest {
 
     public static final int AUDITORIUMS_COUNT = 2;
     @Autowired
-    private AuditoriumService   auditoriumService;
+    private AuditoriumService auditoriumService;
     @Autowired
     private ApplicationContext  applicationContext;
     @Autowired

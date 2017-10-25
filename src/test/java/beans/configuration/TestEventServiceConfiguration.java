@@ -1,11 +1,11 @@
 package beans.configuration;
 
-import beans.daos.EventDAO;
+import com.booking.service.beans.daos.EventDAO;
 import beans.daos.mocks.EventDAOMock;
-import beans.models.Event;
-import beans.models.Rate;
-import beans.services.EventService;
-import beans.services.EventServiceImpl;
+import com.booking.service.beans.models.Event;
+import com.booking.service.beans.models.Rate;
+import com.booking.service.beans.services.EventService;
+import com.booking.service.beans.services.EventServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -24,7 +24,7 @@ public class TestEventServiceConfiguration extends TestAuditoriumConfiguration {
     @Bean
     @Scope("prototype")
     public Event testEvent1() {
-        return new Event("Test event", beans.models.Rate.HIGH, 124.0, java.time.LocalDateTime.of(2016, 2, 6, 14, 45, 0),
+        return new Event("Test event", Rate.HIGH, 124.0, java.time.LocalDateTime.of(2016, 2, 6, 14, 45, 0),
                          testHall1());
     }
 

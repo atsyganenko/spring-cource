@@ -1,9 +1,9 @@
 package beans.daos.mocks;
 
-import beans.daos.BookingDAO;
-import beans.models.Event;
-import beans.models.Ticket;
-import beans.models.User;
+import com.booking.service.beans.daos.BookingDAO;
+import com.booking.service.beans.models.Event;
+import com.booking.service.beans.models.Ticket;
+import com.booking.service.beans.models.User;
 
 import java.util.List;
 import java.util.Objects;
