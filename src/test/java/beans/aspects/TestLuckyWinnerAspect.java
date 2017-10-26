@@ -1,13 +1,13 @@
 package beans.aspects;
 
 import beans.aspects.mocks.LuckyWinnerAspectMock;
-import com.booking.service.beans.configuration.AppConfiguration;
-import com.booking.service.beans.configuration.db.DataSourceConfiguration;
-import com.booking.service.beans.configuration.db.DbSessionFactory;
 import beans.daos.mocks.BookingDAOBookingMock;
 import beans.daos.mocks.DBAuditoriumDAOMock;
 import beans.daos.mocks.EventDAOMock;
 import beans.daos.mocks.UserDAOMock;
+import com.booking.service.beans.configuration.AppConfiguration;
+import com.booking.service.beans.configuration.db.DataSourceConfiguration;
+import com.booking.service.beans.configuration.db.DbSessionFactory;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
 import com.booking.service.beans.services.BookingService;
@@ -35,7 +35,7 @@ import static junit.framework.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfiguration.class, DataSourceConfiguration.class, DbSessionFactory.class,
-                                 beans.configuration.TestAspectsConfiguration.class})
+        beans.configuration.TestAspectsConfiguration.class})
 @Transactional
 public class TestLuckyWinnerAspect {
 
@@ -81,16 +81,16 @@ public class TestLuckyWinnerAspect {
     @Test
     public void testCalculateDiscount() {
         User user = (User) applicationContext.getBean("testUser1");
-        User discountUser = new User(user.getId(), user.getEmail(), user.getName(), LocalDate.now());
+        User discountUser = new User(user.getId(), user.getName(), user.getEmail(), LocalDate.now());
         Ticket ticket1 = (Ticket) applicationContext.getBean("testTicket1");
         bookingService.bookTicket(discountUser,
-                                  new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(5, 6), user, ticket1.getPrice()));
+                new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(5, 6), user, ticket1.getPrice()));
         bookingService.bookTicket(discountUser,
-                                  new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(7, 8), user, ticket1.getPrice()));
+                new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(7, 8), user, ticket1.getPrice()));
         bookingService.bookTicket(discountUser,
-                                  new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(9, 10), user, ticket1.getPrice()));
+                new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(9, 10), user, ticket1.getPrice()));
         bookingService.bookTicket(discountUser,
-                                  new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(11, 12), user, ticket1.getPrice()));
+                new Ticket(ticket1.getEvent(), ticket1.getDateTime(), Arrays.asList(11, 12), user, ticket1.getPrice()));
 
         assertEquals(Collections.singletonList(user.getEmail()), LuckyWinnerAspectMock.getLuckyUsers());
     }

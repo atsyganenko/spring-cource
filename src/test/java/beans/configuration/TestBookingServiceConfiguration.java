@@ -1,10 +1,13 @@
 package beans.configuration;
 
+import beans.daos.mocks.BookingDAOBookingMock;
+import beans.daos.mocks.DBAuditoriumDAOMock;
+import beans.daos.mocks.EventDAOMock;
+import beans.daos.mocks.UserDAOMock;
 import com.booking.service.beans.daos.AuditoriumDAO;
 import com.booking.service.beans.daos.BookingDAO;
 import com.booking.service.beans.daos.EventDAO;
 import com.booking.service.beans.daos.UserDAO;
-import beans.daos.mocks.*;
 import com.booking.service.beans.models.*;
 import com.booking.service.beans.services.*;
 import com.booking.service.beans.services.discount.BirthdayStrategy;
@@ -66,35 +69,35 @@ public class TestBookingServiceConfiguration {
     @Bean
     public Event testEvent1() {
         return new Event(1, "Test event", Rate.HIGH, 124.0, java.time.LocalDateTime.of(2016, 2, 6, 14, 45, 0),
-                         testHall1());
+                testHall1());
     }
 
     @Bean
     public Event testEvent2() {
         return new Event(2, "Test event2", Rate.MID, 500.0, java.time.LocalDateTime.of(2016, 12, 6, 9, 35, 0),
-                         testHall2());
+                testHall2());
     }
 
     @Bean
     public User testUser1() {
-        return new User(0, "dmitriy.vbabichev@gmail.com", "Dmytro Babichev", java.time.LocalDate.of(1992, 4, 29));
+        return new User(0, "Dmytro Babichev", "dmitriy.vbabichev@gmail.com", java.time.LocalDate.of(1992, 4, 29));
     }
 
     @Bean
     public User testUser2() {
-        return new User(1, "laory@yandex.ru", "Dmytro Babichev", java.time.LocalDate.of(1992, 4, 29));
+        return new User(1, "Dmytro Babichev", "laory@yandex.ru", java.time.LocalDate.of(1992, 4, 29));
     }
 
     @Bean
     public Ticket testTicket1() {
         return new Ticket(1, testEvent1(), java.time.LocalDateTime.of(2016, 2, 6, 14, 45, 0), Arrays.asList(3, 4),
-                          testUser1(), 32D);
+                testUser1(), 32D);
     }
 
     @Bean
     public Ticket testTicket2() {
         return new Ticket(2, testEvent2(), java.time.LocalDateTime.of(2016, 2, 7, 14, 45, 0), Arrays.asList(1, 2),
-                          testUser1(), 123D);
+                testUser1(), 123D);
     }
 
     @Bean
@@ -136,6 +139,6 @@ public class TestBookingServiceConfiguration {
     @Bean(name = "testBookingServiceImpl")
     public BookingService bookingServiceImpl() {
         return new BookingServiceImpl(eventServiceImpl(), auditoriumServiceImpl(), userServiceImpl(),
-                                      discountBookingServiceImpl(), bookingBookingDAO(), 1, 2, 1.2, 1);
+                discountBookingServiceImpl(), bookingBookingDAO(), 1, 2, 1.2, 1);
     }
 }

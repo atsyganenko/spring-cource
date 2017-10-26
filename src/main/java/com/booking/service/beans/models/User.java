@@ -10,15 +10,15 @@ import java.time.LocalDate;
  */
 public class User {
 
-    private long      id;
-    private String    email;
-    private String    name;
+    private long id;
+    private String email;
+    private String name;
     private LocalDate birthday;
 
     public User() {
     }
 
-    public User(long id, String email, String name, LocalDate birthday) {
+    public User(long id, String name, String email, LocalDate birthday) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -26,11 +26,11 @@ public class User {
     }
 
     public User(String email, String name, LocalDate birthday) {
-        this(-1, email, name, birthday);
+        this(-1, name, email, birthday);
     }
 
     public User withId(long id) {
-        return new User(id, email, name, birthday);
+        return new User(id, name, email, birthday);
     }
 
     public long getId() {
@@ -96,10 +96,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-               "id=" + id +
-               ", email='" + email + '\'' +
-               ", name='" + name + '\'' +
-               ", birthday=" + birthday +
-               '}';
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                '}';
     }
 }
