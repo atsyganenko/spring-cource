@@ -37,7 +37,8 @@ public class AuditoriumController {
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String getAuditoriumByID(@PathVariable String name, Map<String, List<Auditorium>> model) {
-        model.put("auditoriums", Collections.singletonList(auditoriumService.getByName(name)));
+        Auditorium auditorium = auditoriumService.getByName(name);
+        model.put("auditoriums", auditorium != null ? Collections.singletonList(auditorium) : Collections.EMPTY_LIST);
         return "auditoriumsTable";
     }
 

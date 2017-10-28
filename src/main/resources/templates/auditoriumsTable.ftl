@@ -5,7 +5,6 @@
     <table>
         <caption>Auditoriums</caption>
         <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Seats Number</th>
             <th>Vip Seats</th>
