@@ -36,19 +36,20 @@ public class UsersController {
     }
 
     @RequestMapping("upload")
-    String uploadUsers() {
-        return "usersUploadForm";
+    String uploadUsers(Map<String, String> model) {
+        model.put("formAction", "/users/upload");
+        return "uploadForm";
     }
 
 
     @RequestMapping(value = "upload", method = RequestMethod.POST)
-    String uploadUsers(@RequestParam MultipartFile[] files) throws IOException {
+    ResponseEntity uploadUsers(@RequestParam MultipartFile[] files) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         List<User> users = mapper.readValue(files[0].getBytes(), new TypeReference<List<User>>() {
         });
         users.forEach(userService::register);
-        return "usersUploadForm";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
