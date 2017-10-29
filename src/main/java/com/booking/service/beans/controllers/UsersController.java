@@ -6,8 +6,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,28 +33,33 @@ public class UsersController {
         this.userService = userService;
     }
 
+    @RequestMapping("all")
+    String allEvents(Map<String, List<User>> model) {
+        model.put("users", userService.getAll());
+        return "usersTable";
+    }
+
     @RequestMapping("upload")
     String uploadUsers(Map<String, String> model) {
         model.put("formAction", "/users/upload");
         return "uploadForm";
     }
 
-
     @RequestMapping(value = "upload", method = RequestMethod.POST)
-    ResponseEntity uploadUsers(@RequestParam MultipartFile[] files) throws IOException {
+    String uploadUsers(@RequestParam MultipartFile[] files) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         List<User> users = mapper.readValue(files[0].getBytes(), new TypeReference<List<User>>() {
         });
         users.forEach(userService::register);
-        return new ResponseEntity(HttpStatus.OK);
+        return "redirect:all";
     }
 
     @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
-    ResponseEntity removeUser(@PathVariable String id) {
+    String removeUser(@PathVariable String id) {
         User user = userService.getById(Long.parseLong(id));
         userService.remove(user);
-        return new ResponseEntity(HttpStatus.OK);
+        return "redirect:all";
     }
 
     @RequestMapping(value = "/get", params = "email", method = RequestMethod.GET)

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 <body>
-<div>
-    <table>
+<div class="container">
+    <table class="table">
         <caption>Auditoriums</caption>
         <tr>
             <th>Name</th>

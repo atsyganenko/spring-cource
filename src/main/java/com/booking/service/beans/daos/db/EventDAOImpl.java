@@ -88,7 +88,7 @@ public class EventDAOImpl extends AbstractDAO implements EventDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<Event> getNext(LocalDateTime to) {
-        return ((List<Event>) createBlankCriteria(Event.class).add(Restrictions.le("dateTime", to)).list());
+        return ((List<Event>) createBlankCriteria(Event.class).add(Restrictions.gt("dateTime", to)).list());
     }
 
     @Override

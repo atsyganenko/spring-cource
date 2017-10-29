@@ -7,8 +7,6 @@ import com.booking.service.beans.services.EventService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +41,7 @@ public class EventController {
     }
 
     @RequestMapping(value = "upload", method = RequestMethod.POST)
-    ResponseEntity uploadEvents(@RequestParam MultipartFile[] files) throws IOException {
+    String uploadEvents(@RequestParam MultipartFile[] files) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         Event event = new Event(1, "Test event", Rate.HIGH, 124.0, java.time.LocalDateTime.of(2016, 2, 6, 14, 45, 0),
@@ -51,7 +49,7 @@ public class EventController {
         List<Event> events = mapper.readValue(files[0].getBytes(), new TypeReference<List<Event>>() {
         });
         events.forEach(eventService::create);
-        return new ResponseEntity(HttpStatus.OK);
+        return "redirect:all";
     }
 
     @RequestMapping("all")
