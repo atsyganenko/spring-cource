@@ -30,16 +30,28 @@ public class TicketsController {
         this.ticketsPDFView = ticketsPDFView;
     }
 
-    @RequestMapping(value = "/booked", params = "userEmail")
-    public ModelAndView getBookTicketByUser(@RequestParam String userEmail, Map<String, List<Ticket>> model) {
+    @RequestMapping(value = "/booked", params = "userEmail", headers = "Accept=application/pdf")
+    public ModelAndView getBookedTicketInPdfByUser(@RequestParam String userEmail, Map<String, List<Ticket>> model) {
         model.put("tickets", bookingService.getTicketsByUser(userEmail));
         return new ModelAndView(ticketsPDFView, model);
     }
 
-    @RequestMapping(value = "/booked", params = "eventId")
-    public ModelAndView getBookTicketByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
+    @RequestMapping(value = "/booked", params = "userEmail")
+    public String getBookedTicketByUser(@RequestParam String userEmail, Map<String, List<Ticket>> model) {
+        model.put("tickets", bookingService.getTicketsByUser(userEmail));
+        return "ticketsTable";
+    }
+
+    @RequestMapping(value = "/booked", params = "eventId", headers = "Accept=application/pdf")
+    public ModelAndView getBookedTicketByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
         model.put("tickets", bookingService.getTicketsForEvent(eventId));
         return new ModelAndView(ticketsPDFView, model);
+    }
+
+    @RequestMapping(value = "/booked", params = "eventId")
+    public String getBookedTicketInPdfByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
+        model.put("tickets", bookingService.getTicketsForEvent(eventId));
+        return "ticketsTable";
     }
 
 }
