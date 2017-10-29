@@ -2,7 +2,6 @@ package com.booking.service.beans.services;
 
 import com.booking.service.beans.models.Auditorium;
 import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
