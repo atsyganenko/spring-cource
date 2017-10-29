@@ -22,21 +22,24 @@ import java.util.Map;
 public class TicketsController {
 
     private final BookingService bookingService;
+    private final TicketsPdfView ticketsPDFView;
 
     @Autowired
-    public TicketsController(BookingService bookingService) {
+    public TicketsController(BookingService bookingService, TicketsPdfView ticketsPDFView) {
         this.bookingService = bookingService;
+        this.ticketsPDFView = ticketsPDFView;
     }
 
-    @RequestMapping("/booked")
-    public ModelAndView getBookTicketInPdf(@RequestParam String userEmail, Map<String, List<Ticket>> model) {
+    @RequestMapping(value = "/booked", params = "userEmail")
+    public ModelAndView getBookTicketByUser(@RequestParam String userEmail, Map<String, List<Ticket>> model) {
         model.put("tickets", bookingService.getTicketsByUser(userEmail));
-        return new ModelAndView(new TicketsPdfView(), model);
+        return new ModelAndView(ticketsPDFView, model);
     }
 
-/*    double getTicketPrice(String event, String auditorium, LocalDateTime dateTime, List<Integer> seats, User user);
+    @RequestMapping(value = "/booked", params = "eventId")
+    public ModelAndView getBookTicketByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
+        model.put("tickets", bookingService.getTicketsForEvent(eventId));
+        return new ModelAndView(ticketsPDFView, model);
+    }
 
-    Ticket bookTicket(User user, Ticket ticket);
-
-    List<Ticket> getTicketsForEvent(String event, String auditorium, LocalDateTime date);*/
 }
