@@ -1,11 +1,10 @@
 package com.booking.service.beans.configuration;
 
-import com.booking.service.beans.view.TicketsPdfView;
+import com.booking.service.beans.views.TicketsPdfView;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 
 @Configuration

@@ -1,4 +1,4 @@
-package com.booking.service.beans.view;
+package com.booking.service.beans.views;
 
 import com.booking.service.beans.models.Ticket;
 import com.lowagie.text.Document;

@@ -2,7 +2,7 @@ package com.booking.service.beans.controllers;
 
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.services.BookingService;
-import com.booking.service.beans.view.TicketsPdfView;
+import com.booking.service.beans.views.TicketsPdfView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
