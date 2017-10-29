@@ -2,10 +2,12 @@ package com.booking.service.beans.controllers;
 
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.services.BookingService;
+import com.booking.service.beans.view.TicketsPdfView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -27,9 +29,9 @@ public class TicketsController {
     }
 
     @RequestMapping("/booked")
-    public String getBookTicketInPdf(@RequestParam String userEmail, Map<String, List<Ticket>> model) {
+    public ModelAndView getBookTicketInPdf(@RequestParam String userEmail, Map<String, List<Ticket>> model) {
         model.put("tickets", bookingService.getTicketsByUser(userEmail));
-        return "ticketsTable";
+        return new ModelAndView(new TicketsPdfView(), model);
     }
 
 /*    double getTicketPrice(String event, String auditorium, LocalDateTime dateTime, List<Integer> seats, User user);

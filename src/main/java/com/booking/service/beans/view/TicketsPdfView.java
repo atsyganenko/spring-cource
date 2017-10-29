@@ -1,6 +1,6 @@
 package com.booking.service.beans.view;
 
-import com.booking.service.beans.models.Event;
+import com.booking.service.beans.models.Ticket;
 import com.lowagie.text.Document;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
@@ -8,7 +8,6 @@ import org.springframework.web.servlet.view.document.AbstractPdfView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
@@ -17,32 +16,30 @@ import java.util.Map;
  * Created by Anastasiia Tsyganenko
  * on 10/29/2017.
  */
-public class EventPdfView extends AbstractPdfView {
-
-    private static final DateFormat DATE_FORMAT = DateFormat.getDateInstance(DateFormat.SHORT);
+public class TicketsPdfView extends AbstractPdfView {
 
     @Override
     protected void buildPdfDocument(Map<String, Object> map, Document document, PdfWriter pdfWriter, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         @SuppressWarnings("unchecked")
-        List<Event> events = (List<Event>) map.get("events");
+        List<Ticket> tickets = (List<Ticket>) map.get("tickets");
 
         PdfPTable table = new PdfPTable(6);
 
 
         table.addCell("ID");
-        table.addCell("Name");
-        table.addCell("Rate");
-        table.addCell("Price");
+        table.addCell("Event");
         table.addCell("Date");
-        table.addCell("Auditorium");
+        table.addCell("Seats");
+        table.addCell("User");
+        table.addCell("Price");
 
-        for (Event event : events) {
-            table.addCell(String.valueOf(event.getId()));
-            table.addCell(event.getName());
-            table.addCell(event.getRate().name());
-            table.addCell(String.valueOf(event.getBasePrice()));
-            table.addCell(event.getDateTime().format(DateTimeFormatter.BASIC_ISO_DATE));
-            table.addCell(event.getAuditorium().getName());
+        for (Ticket ticket : tickets) {
+            table.addCell(String.valueOf(ticket.getId()));
+            table.addCell(ticket.getEvent().getName());
+            table.addCell(ticket.getDateTime().format(DateTimeFormatter.BASIC_ISO_DATE));
+            table.addCell(ticket.getSeats());
+            table.addCell(ticket.getUser().getName());
+            table.addCell(String.valueOf(ticket.getPrice()));
         }
 
         document.add(table);
