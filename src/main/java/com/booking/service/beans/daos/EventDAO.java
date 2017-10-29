@@ -29,6 +29,8 @@ public interface EventDAO {
 
     List<Event> getAll();
 
+    Event get(long id);
+
     List<Event> getForDateRange(LocalDateTime from, LocalDateTime to);
 
     List<Event> getNext(LocalDateTime to);

@@ -44,7 +44,7 @@ public class EventDAOImpl extends AbstractDAO implements EventDAO {
     @Override
     public Event get(String eventName, Auditorium auditorium, LocalDateTime dateTime) {
         LogicalExpression nameAndDate = Restrictions.and(Restrictions.eq("dateTime", dateTime),
-                                                         Restrictions.eq("name", eventName));
+                Restrictions.eq("name", eventName));
         return ((Event) createBlankCriteria(Event.class).add(nameAndDate).createAlias("auditorium", "aud").add(
                 Restrictions.eq("aud.id", auditorium.getId())).uniqueResult());
     }
@@ -64,8 +64,13 @@ public class EventDAOImpl extends AbstractDAO implements EventDAO {
     @SuppressWarnings("unchecked")
     public List<Event> getByNameAndDate(String name, LocalDateTime dateTime) {
         LogicalExpression nameAndDate = Restrictions.and(Restrictions.eq("dateTime", dateTime),
-                                                         Restrictions.eq("name", name));
+                Restrictions.eq("name", name));
         return ((List<Event>) createBlankCriteria(Event.class).add(nameAndDate).list());
+    }
+
+    @Override
+    public Event get(long id) {
+        return getCurrentSession().get(Event.class, id);
     }
 
     @Override

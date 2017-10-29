@@ -52,6 +52,11 @@ public class EventServiceImpl implements EventService {
         return eventDAO.getForDateRange(from, to);
     }
 
+    @Override
+    public Event getById(long id) {
+        return eventDAO.get(id);
+    }
+
     public List<Event> getNextEvents(LocalDateTime to) {
         return eventDAO.getNext(to);
     }

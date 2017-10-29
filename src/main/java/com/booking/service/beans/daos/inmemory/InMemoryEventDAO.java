@@ -99,6 +99,11 @@ public class InMemoryEventDAO implements EventDAO {
     }
 
     @Override
+    public Event get(long id) {
+        return getEventStream().filter(event -> event.getId() == id).findFirst().orElse(null);
+    }
+
+    @Override
     public List<Event> getByAuditoriumAndDate(Auditorium auditorium, LocalDateTime dateTime) {
         final Stream<Event> eventStream = getEventStream();
         final Stream<Event> filteredByDate = filterByDateTime(eventStream, dateTime);

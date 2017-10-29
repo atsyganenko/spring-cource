@@ -2,6 +2,7 @@ package com.booking.service.beans.services;
 
 import com.booking.service.beans.models.Auditorium;
 import com.booking.service.beans.models.Event;
+import com.booking.service.beans.models.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +22,8 @@ public interface EventService {
     Event getEvent(String name, Auditorium auditorium, LocalDateTime dateTime);
 
     public List<Event> getByName(String name);
+
+    Event getById(long id);
 
     public List<Event> getAll();
 
