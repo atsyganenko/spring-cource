@@ -6,7 +6,7 @@
 <body>
 <div class="container">
     <table class="table">
-        <caption>Users</caption>
+        <caption>Tickets</caption>
         <tr>
             <th>Id</th>
             <th>Event</th>

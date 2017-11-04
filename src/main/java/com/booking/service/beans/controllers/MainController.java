@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * on 11/4/2017.
  */
 @Controller
-public class LoginController {
+public class MainController {
 
     @RequestMapping("login")
     public String logIn() {
@@ -31,4 +31,15 @@ public class LoginController {
 
         return "redirect:login";
     }
+
+    @RequestMapping("/**")
+    public String redirectToDefaultPage() {
+        return "redirect:home";
+    }
+
+    @RequestMapping("home")
+    public String home() {
+        return "index";
+    }
+
 }
