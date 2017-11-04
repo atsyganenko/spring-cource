@@ -1,7 +1,7 @@
 package com.booking.service.beans.models;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -27,6 +27,7 @@ public class User {
         this.email = email;
         this.name = name;
         this.birthday = birthday;
+        this.roles = new HashSet<>();
     }
 
     public String getEncryptedPassword() {
@@ -43,6 +44,10 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
     }
 
     public User(String email, String name, LocalDate birthday) {

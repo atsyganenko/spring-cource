@@ -20,7 +20,7 @@ import java.util.HashSet;
  * on 11/4/2017.
  */
 @Component
-public class DataLoad implements ApplicationListener<ContextRefreshedEvent> {
+public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private UserService userService;
     private PasswordEncoder passwordEncoder;
@@ -54,11 +54,13 @@ public class DataLoad implements ApplicationListener<ContextRefreshedEvent> {
         adminUser.setEncryptedPassword(passwordEncoder.encode("admin123"));
         adminUser.setRoles(new HashSet<Role>(Arrays.asList(Role.REGISTERED_USER, Role.BOOKING_MANAGER)));
 
-        User user = new User("user@bokking.com", "user", LocalDate.of(1897, 12, 1));
+        User user = new User("user@booking.com", "user", LocalDate.of(1897, 12, 1));
         user.setEncryptedPassword(passwordEncoder.encode("user123"));
         user.setRoles(new HashSet<>(Collections.singletonList(Role.REGISTERED_USER)));
         userService.register(user);
         userService.register(adminUser);
     }
+
+
 
 }

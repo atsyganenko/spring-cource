@@ -1,6 +1,7 @@
 package com.booking.service.beans.controllers;
 
 import com.booking.service.beans.models.Event;
+import com.booking.service.beans.models.Role;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
 import com.booking.service.beans.services.BookingService;
@@ -8,6 +9,7 @@ import com.booking.service.beans.services.EventService;
 import com.booking.service.beans.services.UserService;
 import com.booking.service.beans.views.TicketsPdfView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +68,7 @@ public class TicketsController {
         return "ticketsTable";
     }
 
+    @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping("book")
     public String bookTicket(Map<String, Object> model, @RequestParam long eventId, @RequestParam String userEmail) {
         Ticket ticket = new Ticket();

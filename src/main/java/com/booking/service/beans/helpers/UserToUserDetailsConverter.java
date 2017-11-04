@@ -3,12 +3,14 @@ package com.booking.service.beans.helpers;
  * Created by Anastasiia Tsyganenko
  * on 11/4/2017.
  */
+
 import com.booking.service.beans.models.SecurityUserDetails;
+import com.booking.service.beans.models.User;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import com.booking.service.beans.models.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -24,7 +26,7 @@ public class UserToUserDetailsConverter implements Converter<User, UserDetails> 
             userDetails.setEnabled(true);
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
             user.getRoles().forEach(role -> {
-                authorities.add(new SimpleGrantedAuthority(role.getName()));
+                authorities.add(new SimpleGrantedAuthority(String.format("ROLE_%s", role.getName())));
             });
             userDetails.setAuthorities(authorities);
         }
