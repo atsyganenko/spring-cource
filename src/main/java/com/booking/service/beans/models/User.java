@@ -1,6 +1,8 @@
 package com.booking.service.beans.models;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,6 +16,8 @@ public class User {
     private String email;
     private String name;
     private LocalDate birthday;
+    private String encryptedPassword;
+    private Set<Role> roles;
 
     public User() {
     }
@@ -23,6 +27,22 @@ public class User {
         this.email = email;
         this.name = name;
         this.birthday = birthday;
+    }
+
+    public String getEncryptedPassword() {
+        return encryptedPassword;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public User(String email, String name, LocalDate birthday) {

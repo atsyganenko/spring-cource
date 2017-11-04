@@ -13,12 +13,19 @@
 <hibernate-mapping package="beans.models">
 
     <class name="com.booking.service.beans.models.User" table="USER">
-        <id name="id" column="ID">
+        <id name="id" column="USER_ID">
             <generator class="identity"/>
         </id>
         <property name="email" column="EMAIL" type="string" unique="true"/>
         <property name="name" column="NAME" type="string"/>
         <property name="birthday" type="java.time.LocalDate" column="EVENT_DATE"/>
+        <property name="encryptedPassword" type="java.lang.String" column="PASSWORD"/>
+        <set name="roles" table="USER_ROLE" lazy="true" fetch="join">
+            <key column="USER_ID" not-null="true"/>
+            <many-to-many class="com.booking.service.beans.models.Role">
+                <column name="ROLE_ID " not-null="true"/>
+            </many-to-many>
+        </set>
     </class>
 
 </hibernate-mapping>

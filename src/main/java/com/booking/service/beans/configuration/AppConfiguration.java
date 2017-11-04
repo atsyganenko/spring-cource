@@ -19,4 +19,5 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
     TicketsPdfView ticketsPdfView() {
         return new TicketsPdfView();
     }
+
 }
