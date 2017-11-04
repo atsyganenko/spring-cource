@@ -3,6 +3,7 @@ package com.booking.service.beans.daos.db;
 import com.booking.service.beans.daos.AbstractDAO;
 import com.booking.service.beans.daos.UserDAO;
 import com.booking.service.beans.models.User;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -51,12 +52,12 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getAllByName(String name) {
-        return createBlankCriteria(User.class).add(Restrictions.eq("name", name)).list();
+        return createBlankCriteria(User.class).setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY).add(Restrictions.eq("name", name)).list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getAll() {
-        return ((List<User>) createBlankCriteria(User.class).list());
+        return ((List<User>) createBlankCriteria(User.class).setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY).list());
     }
 }
