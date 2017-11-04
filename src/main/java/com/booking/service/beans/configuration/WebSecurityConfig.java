@@ -16,6 +16,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
+
 
 /**
  * Created by Anastasiia Tsyganenko
@@ -27,6 +32,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private AuthenticationProvider authenticationProvider;
+    private PersistentTokenRepository persistentTokenRepository;
+
+    @Autowired
+    public void setPersistentTokenRepository(PersistentTokenRepository persistentTokenRepository) {
+        this.persistentTokenRepository = persistentTokenRepository;
+    }
 
     @Autowired
     @Qualifier("daoAuthenticationProvider")
@@ -54,17 +65,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new DefaultUserDetailsService();
     }
 
-
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests().anyRequest().hasRole(Role.REGISTERED_USER.getName())
                 .and()
                 .formLogin().loginPage("/login").permitAll()
+                .and().rememberMe().rememberMeParameter("remember-me")
+                .tokenRepository(persistentTokenRepository).tokenValiditySeconds(30)
                 .and()
                 .logout().permitAll();
         httpSecurity.csrf().disable();
+    }
+
+    @Bean
+    @Autowired
+    @Qualifier("dataSource")
+    PersistentTokenRepository persistentTokenRepository(DataSource dataSource) {
+        JdbcTokenRepositoryImpl persistentTokenRepository = new JdbcTokenRepositoryImpl();
+        persistentTokenRepository.setDataSource(dataSource);
+        return persistentTokenRepository;
     }
 
     @Override
