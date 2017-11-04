@@ -69,13 +69,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests().anyRequest().hasRole(Role.REGISTERED_USER.getName())
-                .and()
-                .formLogin().loginPage("/login").permitAll()
+                .and().formLogin().loginPage("/login").permitAll()
                 .and().rememberMe().rememberMeParameter("remember-me")
-                .tokenRepository(persistentTokenRepository).tokenValiditySeconds(30)
+                .tokenRepository(persistentTokenRepository).tokenValiditySeconds(36000)
                 .and()
                 .logout().permitAll();
-        httpSecurity.csrf().disable();
     }
 
     @Bean
