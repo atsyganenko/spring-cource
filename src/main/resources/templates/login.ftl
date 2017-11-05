@@ -27,7 +27,7 @@
 </#if>
     <br/>
     <p>You may use predefined test users:</p>
-    <p>RESGISTERED_USER [userEmail: user@booking.com, password: user123]</p>
+    <p>REGISTERED_USER [userEmail: user@booking.com, password: user123]</p>
     <p>BOOKING_MANAGER [userEmail: admin@booking.com, password: admin123]</p>
 </div>
 </body>
