@@ -20,12 +20,7 @@
         <property name="name" column="NAME" type="string"/>
         <property name="birthday" type="java.time.LocalDate" column="EVENT_DATE"/>
         <property name="encryptedPassword" type="java.lang.String" column="PASSWORD"/>
-        <set name="roles" table="USER_ROLE" lazy="true" fetch="join">
-            <key column="USER_ID" not-null="true"/>
-            <many-to-many class="com.booking.service.beans.models.Role">
-                <column name="ROLE_ID " not-null="true"/>
-            </many-to-many>
-        </set>
+        <property name="roles" column="ROLES" type="string"/>
     </class>
 
 </hibernate-mapping>

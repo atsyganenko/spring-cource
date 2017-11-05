@@ -3,6 +3,7 @@ package com.booking.service.beans.controllers;
 import com.booking.service.beans.models.Auditorium;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Rate;
+import com.booking.service.beans.models.UserRole;
 import com.booking.service.beans.services.EventService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,7 +56,7 @@ public class EventController {
 
     @RequestMapping("all")
     String allEvents(Map<String, Object> model, HttpServletRequest request) {
-        if (request.isUserInRole("BOOKING_MANAGER")) {
+        if (request.isUserInRole(UserRole.BOOKING_MANAGER.name())) {
             model.put("isBookingManager", true);
         }
         model.put("events", eventService.getAll());

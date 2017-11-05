@@ -34,7 +34,7 @@ public class MainController {
 
     @RequestMapping("/**")
     public String redirectToDefaultPage() {
-        return "redirect:home";
+        return "redirect:/home";
     }
 
     @RequestMapping("home")

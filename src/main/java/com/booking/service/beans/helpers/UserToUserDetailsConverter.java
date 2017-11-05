@@ -25,8 +25,8 @@ public class UserToUserDetailsConverter implements Converter<User, UserDetails> 
             userDetails.setPassword(user.getEncryptedPassword());
             userDetails.setEnabled(true);
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            user.getRoles().forEach(role -> {
-                authorities.add(new SimpleGrantedAuthority(String.format("ROLE_%s", role.getName())));
+            user.getRolesSet().forEach(role -> {
+                authorities.add(new SimpleGrantedAuthority(String.format("ROLE_%s", role)));
             });
             userDetails.setAuthorities(authorities);
         }

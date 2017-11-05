@@ -2,8 +2,8 @@ package com.booking.service.beans.daos.db;
 
 import com.booking.service.beans.daos.AbstractDAO;
 import com.booking.service.beans.daos.UserDAO;
-import com.booking.service.beans.models.Role;
 import com.booking.service.beans.models.User;
+import com.booking.service.beans.models.UserRole;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -64,8 +64,8 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     }
 
     private void addDefaultRolesToUser(User user) {
-        if (!user.getRoles().contains(Role.REGISTERED_USER)) {
-            user.addRole(Role.REGISTERED_USER);
+        if (!user.getRoles().contains(UserRole.REGISTERED_USER.name())) {
+            user.addRole(UserRole.REGISTERED_USER.name());
         }
     }
 }

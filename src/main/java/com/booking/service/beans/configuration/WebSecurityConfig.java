@@ -1,6 +1,6 @@
 package com.booking.service.beans.configuration;
 
-import com.booking.service.beans.models.Role;
+import com.booking.service.beans.models.UserRole;
 import com.booking.service.beans.services.DefaultUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -68,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeRequests().anyRequest().hasRole(Role.REGISTERED_USER.getName())
+                .authorizeRequests().anyRequest().hasRole(UserRole.REGISTERED_USER.name())
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().rememberMe().rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository).tokenValiditySeconds(36000)
