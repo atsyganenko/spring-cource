@@ -6,8 +6,10 @@ import com.booking.service.beans.configuration.db.DataSourceConfiguration;
 import com.booking.service.beans.configuration.db.DbSessionFactory;
 import beans.daos.mocks.UserDAOMock;
 import com.booking.service.beans.models.User;
+import com.booking.service.beans.models.UserRole;
 import com.booking.service.beans.services.UserService;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,6 +65,14 @@ public class UserServiceImplTest {
         User user = new User(email, UUID.randomUUID().toString(), LocalDate.now());
         long registeredId = userService.register(user).getId();
         assertEquals("User should be the same", userService.getUserByEmail(email), user.withId(registeredId));
+    }
+
+    @Test
+    public void shouldAddDefaultRoleToUser() {
+        String email = UUID.randomUUID().toString();
+        User user = new User(email, UUID.randomUUID().toString(), LocalDate.now());
+        userService.register(user).getId();
+        Assert.assertTrue(userService.getUserByEmail(email).getRoles().contains(UserRole.REGISTERED_USER.name()));
     }
 
     @Test(expected = RuntimeException.class)

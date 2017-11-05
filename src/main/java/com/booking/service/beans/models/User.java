@@ -3,6 +3,7 @@ package com.booking.service.beans.models;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -46,8 +47,8 @@ public class User {
         this.roles = roles;
     }
 
-    public  String getRoles() {
-        return roles;
+    public String getRoles() {
+        return Optional.ofNullable(roles).orElse("");
     }
 
     public void addRole(String role) {
