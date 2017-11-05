@@ -40,7 +40,6 @@
     </#list>
     </table>
 
-<#if isBookingManager?? && isBookingManager==true>
     <br/>
     <h3> Book ticket for event </h3>
     <form action="/tickets/book" method="post">
@@ -58,7 +57,19 @@
             <input class="form-control" type="text" name="seats" placeholder="16,67"/>
         </div>
         <div class="form-group">
-            <input type="submit" value="Continue booking"/>
+            <input type="submit" value="Book ticket"/>
+        </div>
+    </form>
+
+<#if isBookingManager?? && isBookingManager==true>
+    <br/>
+    <form action="/tickets/booked" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <div class="input-group">
+            <input class="form-control" type="text" name="eventId" placeholder="Event Id"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="View all booked tickets for event"/>
         </div>
     </form>
 </#if>

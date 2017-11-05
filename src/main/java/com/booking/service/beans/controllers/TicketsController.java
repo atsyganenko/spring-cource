@@ -55,19 +55,27 @@ public class TicketsController {
         return "ticketsTable";
     }
 
+    @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(value = "/booked", params = "eventId", headers = "Accept=application/pdf")
-    public ModelAndView getBookedTicketByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
+    public ModelAndView getBookedInPdfTicketByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
         model.put("tickets", bookingService.getTicketsForEvent(eventId));
         return new ModelAndView(ticketsPDFView, model);
     }
 
+    @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(value = "/booked", params = "eventId")
-    public String getBookedTicketInPdfByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
+    public String getBookedTicketByEvent(@RequestParam long eventId, Map<String, List<Ticket>> model) {
         model.put("tickets", bookingService.getTicketsForEvent(eventId));
         return "ticketsTable";
     }
 
     @Secured("ROLE_BOOKING_MANAGER")
+    @RequestMapping(value = "/booked", method = RequestMethod.POST)
+    public String getBookedTicket(@ModelAttribute("eventId") String eventId, Map<String, List<Ticket>> model) {
+        model.put("tickets", bookingService.getTicketsForEvent(Long.parseLong(eventId)));
+        return "ticketsTable";
+    }
+
     @RequestMapping(value = "book", method = RequestMethod.POST)
     public String bookTicket(@ModelAttribute("eventId") long eventId,
                              @ModelAttribute("userEmail") String userEmail, @ModelAttribute("seats") String seats) {
