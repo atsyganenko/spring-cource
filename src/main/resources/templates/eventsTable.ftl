@@ -9,12 +9,21 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Booking</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="/users/all">Users</a></li>
-            <li class="active"><a href="/events/all">Events</a></li>
-            <li><a href="/logout">Logout</a></li>
-        </ul>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="/users/all">Users</a></li>
+                <li class="active"><a href="/events/all">Events</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <button type="submit" class="btn btn-link btn-logout">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <div class="container">

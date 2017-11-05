@@ -73,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().rememberMe().rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository).tokenValiditySeconds(36000)
                 .and()
-                .logout().permitAll();
+                .logout().logoutUrl("/logout").clearAuthentication(true).deleteCookies("remember-me").permitAll();
     }
 
     @Bean
