@@ -17,17 +17,17 @@ public class UserToUserDetailsConverterTest {
     public void shouldConvertUserToUserDetails() {
         UserToUserDetailsConverter target = new UserToUserDetailsConverter();
 
-        String name = "testUser";
+        String email = "testUser";
         String encryptedPassword = "hgjldgjlasdjaiej78jhdsmla";
         String roles = "TEST_USER,TEST_ADMIN";
 
         User user = new User();
-        user.setName(name);
+        user.setEmail(email);
         user.setEncryptedPassword(encryptedPassword);
         user.setRoles(roles);
 
         UserDetails userDetails = target.convert(user);
-        Assert.assertEquals(name, userDetails.getUsername());
+        Assert.assertEquals(email, userDetails.getUsername());
         Assert.assertEquals(encryptedPassword, userDetails.getPassword());
         Assert.assertEquals(true, userDetails.isAccountNonExpired());
         Assert.assertEquals(true, userDetails.isAccountNonLocked());
