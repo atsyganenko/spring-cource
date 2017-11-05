@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -53,7 +54,10 @@ public class EventController {
     }
 
     @RequestMapping("all")
-    String allEvents(Map<String, List<Event>> model) {
+    String allEvents(Map<String, Object> model, HttpServletRequest request) {
+        if (request.isUserInRole("BOOKING_MANAGER")) {
+            model.put("isBookingManager", true);
+        }
         model.put("events", eventService.getAll());
         return "eventsTable";
     }

@@ -1,7 +1,6 @@
 package com.booking.service.beans.controllers;
 
 import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.Role;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
 import com.booking.service.beans.services.BookingService;
@@ -69,28 +68,26 @@ public class TicketsController {
     }
 
     @Secured("ROLE_BOOKING_MANAGER")
-    @RequestMapping("book")
-    public String bookTicket(Map<String, Object> model, @RequestParam long eventId, @RequestParam String userEmail) {
+    @RequestMapping(value = "book", method = RequestMethod.POST)
+    public String bookTicket(@ModelAttribute("eventId") long eventId,
+                             @ModelAttribute("userEmail") String userEmail, @ModelAttribute("seats") String seats) {
+
         Ticket ticket = new Ticket();
         User user = userService.getUserByEmail(userEmail);
         Event event = eventService.getById(eventId);
         ticket.setUser(user);
         ticket.setEvent(event);
-        model.put("ticket", ticket);
-        return "bookTicketForm";
-    }
-
-    @RequestMapping(value = "book/confirm", method = RequestMethod.POST)
-    public String bookTicket(@ModelAttribute("ticket") Ticket ticket) {
-        Event event = eventService.getById(ticket.getEvent().getId());
-        User user = userService.getUserByEmail(ticket.getUser().getEmail());
-        double price = bookingService.getTicketPrice(event.getName(), event.getAuditorium().getName(), event.getDateTime(), ticket.getSeatsList(), user);
-        ticket.setPrice(price);
-        ticket.setUser(user);
-        ticket.setEvent(event);
         ticket.setDateTime(LocalDateTime.now());
+        ticket.setSeats(seats);
+        ticket.setPrice(getTicketPrice(ticket));
         bookingService.bookTicket(user, ticket);
         return String.format("redirect:/tickets/booked?userEmail=%s", user.getEmail());
     }
 
+    private double getTicketPrice(Ticket ticket) {
+        Event event = ticket.getEvent();
+        User user = ticket.getUser();
+        return bookingService.getTicketPrice(event.getName(), event.getAuditorium().getName(),
+                event.getDateTime(), ticket.getSeatsList(), user);
+    }
 }

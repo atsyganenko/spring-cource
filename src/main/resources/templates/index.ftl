@@ -13,6 +13,7 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="/users/all">Users</a></li>
             <li><a href="/events/all">Events</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
 </nav>

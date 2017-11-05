@@ -13,6 +13,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="/users/all">Users</a></li>
             <li class="active"><a href="/events/all">Events</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
 </nav>
@@ -23,7 +24,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Rate</th>
-            <th>Prica</th>
+            <th>Price</th>
             <th>Date</th>
             <th>Auditorium</th>
         </tr>
@@ -38,6 +39,29 @@
         </tr>
     </#list>
     </table>
+
+<#if isBookingManager?? && isBookingManager==true>
+    <br/>
+    <h3> Book ticket for event </h3>
+    <form action="/tickets/book" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <div class="input-group">
+            <p>User Email:</p>
+            <input class="form-control" type="text" name="userEmail" placeholder="User Email"/>
+        </div>
+        <div class="input-group">
+            <p>Event Id:</p>
+            <input class="form-control" type="text" name="eventId" placeholder="Event Id"/>
+        </div>
+        <div class="input-group">
+            <p>Seats:</p>
+            <input class="form-control" type="text" name="seats" placeholder="16,67"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Continue booking"/>
+        </div>
+    </form>
+</#if>
 </div>
 </body>
 </html>

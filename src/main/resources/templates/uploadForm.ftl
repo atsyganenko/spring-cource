@@ -3,8 +3,9 @@
 
 <body>
 <form action= ${formAction} enctype="multipart/form-data" method="post">
-Select files: <input type="file"  name="files" multiple>
-<input type="submit" value="Upload"/>
+    Select files: <input type="file" name="files" multiple>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input type="submit" value="Upload"/>
 </form>
 </body>
 
