@@ -3,6 +3,7 @@ package com.booking.service.beans.daos.db;
 import com.booking.service.beans.daos.AbstractDAO;
 import com.booking.service.beans.daos.UserDAO;
 import com.booking.service.beans.models.User;
+import com.booking.service.beans.models.UserAccount;
 import com.booking.service.beans.models.UserRole;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
@@ -22,14 +23,17 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
 
     @Override
     public User create(User user) {
+
         UserDAO.validateUser(user);
-        addDefaultRolesToUser(user);
+
         User byEmail = getByEmail(user.getEmail());
         if (Objects.nonNull(byEmail)) {
             throw new IllegalStateException(
                     String.format("Unable to store user: [%s]. User with email: [%s] is already created.", user,
                             user.getEmail()));
         } else {
+            addDefaultRolesToUser(user);
+            assignNewAccountToUser(user);
             Long userId = (Long) getCurrentSession().save(user);
             return user.withId(userId);
         }
@@ -67,5 +71,9 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         if (!user.getRoles().contains(UserRole.REGISTERED_USER.name())) {
             user.addRole(UserRole.REGISTERED_USER.name());
         }
+    }
+
+    private void assignNewAccountToUser(User user) {
+        user.setAccount(new UserAccount());
     }
 }

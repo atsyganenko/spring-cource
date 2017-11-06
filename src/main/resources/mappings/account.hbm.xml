@@ -12,13 +12,11 @@
 
 <hibernate-mapping package="com.booking.service.beans.models">
 
-    <class name="com.booking.service.beans.models.Auditorium" table="AUDITORIUM">
-        <id name="id" column="ID">
+    <class name="com.booking.service.beans.models.UserAccount" table="ACCOUNT">
+        <id name="id" column="ACCOUNT_ID">
             <generator class="identity"/>
         </id>
-        <property name="name" column="NAME" type="string"/>
-        <property name="seatsNumber" column="SEATS_NUMBER" type="int"/>
-        <property name="vipSeats" type="string" column="VIP_SEATS"/>
+        <property name="balance" column="BALANCE" type="double"/>
     </class>
 
 </hibernate-mapping>

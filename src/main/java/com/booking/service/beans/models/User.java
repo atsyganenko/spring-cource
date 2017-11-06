@@ -20,6 +20,7 @@ public class User {
     private LocalDate birthday;
     private String encryptedPassword;
     private String roles;
+    private UserAccount account;
 
     public User() {
     }
@@ -53,6 +54,14 @@ public class User {
 
     public void addRole(String role) {
         this.roles = this.roles == null ? role : String.format("%s,%s", this.roles, role);
+    }
+
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public void setAccount(UserAccount account) {
+        this.account = account;
     }
 
     public User(String email, String name, LocalDate birthday) {

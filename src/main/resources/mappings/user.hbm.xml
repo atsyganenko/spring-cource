@@ -10,7 +10,7 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="beans.models">
+<hibernate-mapping package="com.booking.service.beans.models">
 
     <class name="com.booking.service.beans.models.User" table="USER">
         <id name="id" column="USER_ID">
@@ -21,6 +21,7 @@
         <property name="birthday" type="java.time.LocalDate" column="EVENT_DATE"/>
         <property name="encryptedPassword" type="java.lang.String" column="PASSWORD"/>
         <property name="roles" column="ROLES" type="string"/>
+        <one-to-one name="account" class="UserAccount" fetch="join" lazy="false" cascade="all"/>
     </class>
 
 </hibernate-mapping>
