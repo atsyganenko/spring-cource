@@ -11,7 +11,7 @@ import beans.daos.mocks.UserDAOMock;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
-import com.booking.service.beans.services.BookingService;
+import com.booking.service.beans.services.TicketsService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,7 +52,7 @@ public class BookingServiceImplTest {
 
     @Autowired
     @Value("#{testBookingServiceImpl}")
-    private BookingService bookingService;
+    private TicketsService bookingService;
 
     @Autowired
     private BookingDAOBookingMock bookingDAOBookingMock;

@@ -137,8 +137,8 @@ public class TestBookingServiceConfiguration {
     }
 
     @Bean(name = "testBookingServiceImpl")
-    public BookingService bookingServiceImpl() {
-        return new BookingServiceImpl(eventServiceImpl(), auditoriumServiceImpl(), userServiceImpl(),
+    public TicketsService bookingServiceImpl() {
+        return new TicketsServiceImpl(eventServiceImpl(), auditoriumServiceImpl(), userServiceImpl(),
                 discountBookingServiceImpl(), bookingBookingDAO(), 1, 2, 1.2, 1);
     }
 }

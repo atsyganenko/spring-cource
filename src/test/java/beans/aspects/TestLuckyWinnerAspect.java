@@ -10,7 +10,7 @@ import com.booking.service.beans.configuration.db.DataSourceConfiguration;
 import com.booking.service.beans.configuration.db.DbSessionFactory;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
-import com.booking.service.beans.services.BookingService;
+import com.booking.service.beans.services.TicketsService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,7 +43,7 @@ public class TestLuckyWinnerAspect {
     private ApplicationContext applicationContext;
 
     @Autowired
-    private BookingService bookingService;
+    private TicketsService bookingService;
 
     @Autowired
     private BookingDAOBookingMock bookingDAOBookingMock;

@@ -6,7 +6,9 @@ import com.booking.service.beans.models.UserAccount;
  * Created by Anastasiia Tsyganenko
  * on 11/6/2017.
  */
-public interface UserAccountService {
+interface UserAccountService {
 
    void withdrawMoney(UserAccount account, double amount);
+
+   void topUpAccount(UserAccount account, double amount);
 }

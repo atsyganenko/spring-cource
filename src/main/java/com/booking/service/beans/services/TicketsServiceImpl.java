@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 @Service("bookingServiceImpl")
 @PropertySource({"classpath:strategies/booking.properties"})
 @Transactional
-public class BookingServiceImpl implements BookingService {
+public class TicketsServiceImpl implements TicketsService {
 
     private final EventService      eventService;
     private final AuditoriumService auditoriumService;
@@ -37,7 +38,7 @@ public class BookingServiceImpl implements BookingService {
     final         double            defaultRateMultiplier;
 
     @Autowired
-    public BookingServiceImpl(@Qualifier("eventServiceImpl") EventService eventService,
+    public TicketsServiceImpl(@Qualifier("eventServiceImpl") EventService eventService,
                               @Qualifier("auditoriumServiceImpl") AuditoriumService auditoriumService,
                               @Qualifier("userServiceImpl") UserService userService,
                               @Qualifier("discountServiceImpl") DiscountService discountService,
@@ -121,21 +122,20 @@ public class BookingServiceImpl implements BookingService {
         if (Objects.isNull(user)) {
             throw new NullPointerException("User is [null]");
         }
-        User foundUser = userService.getById(user.getId());
-        if (Objects.isNull(foundUser)) {
-            throw new IllegalStateException("User: [" + user + "] is not registered");
-        }
 
         List<Ticket> bookedTickets = bookingDAO.getTickets(ticket.getEvent());
-        boolean seatsAreAlreadyBooked = bookedTickets.stream().filter(bookedTicket -> ticket.getSeatsList().stream().filter(
-                bookedTicket.getSeatsList() :: contains).findAny().isPresent()).findAny().isPresent();
 
-        if (!seatsAreAlreadyBooked)
+        if (!isSeatsAlreadyBooked(bookedTickets, ticket.getSeatsList()))
             bookingDAO.create(user, ticket);
         else
             throw new IllegalStateException("Unable to book ticket: [" + ticket + "]. Seats are already booked.");
 
         return ticket;
+    }
+
+    private boolean isSeatsAlreadyBooked(List<Ticket> bookedTickets, List<Integer> seatsToBook) {
+
+        return bookedTickets.stream().filter(ticket -> !Collections.disjoint(ticket.getSeatsList(), seatsToBook)).findAny().isPresent();
     }
 
     @Override

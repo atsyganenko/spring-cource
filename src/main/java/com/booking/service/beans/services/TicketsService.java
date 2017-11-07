@@ -12,7 +12,7 @@ import java.util.List;
  * Date: 2/3/2016
  * Time: 11:22 AM
  */
-public interface BookingService {
+public interface TicketsService {
 
     double getTicketPrice(String event, String auditorium, LocalDateTime dateTime, List<Integer> seats, User user);
 

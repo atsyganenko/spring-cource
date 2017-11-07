@@ -1,7 +1,6 @@
 package com.booking.service.beans.services;
 
 import com.booking.service.beans.daos.UserDAO;
-import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,22 +26,27 @@ public class UserServiceImpl implements UserService {
         this.userDAO = userDAO;
     }
 
+    @Override
     public User register(User user) {
         return userDAO.create(user);
     }
 
+    @Override
     public void remove(User user) {
         userDAO.delete(user);
     }
 
+    @Override
     public User getById(long id) {
         return userDAO.get(id);
     }
 
+    @Override
     public User getUserByEmail(String email) {
         return userDAO.getByEmail(email);
     }
 
+    @Override
     public List<User> getUsersByName(String name) {
         return userDAO.getAllByName(name);
     }

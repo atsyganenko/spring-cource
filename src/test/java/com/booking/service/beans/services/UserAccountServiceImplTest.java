@@ -2,7 +2,7 @@ package com.booking.service.beans.services;
 
 import com.booking.service.beans.daos.UserAccountDAO;
 import com.booking.service.beans.models.UserAccount;
-import com.booking.service.exceptions.TicketBookingException;
+import com.booking.service.exceptions.AccountOperationsException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,14 +47,14 @@ public class UserAccountServiceImplTest {
         Mockito.verify(userAccountDAO).updateAccount(Mockito.eq(testAccount));
     }
 
-    @Test(expected = TicketBookingException.class)
+    @Test(expected = AccountOperationsException.class)
     public void shouldThrowExceptionWhenAmountLargerThanBalance() throws Exception {
         double amountToWithdraw = STARTING_BALANCE + 50;
         target.withdrawMoney(testAccount, amountToWithdraw);
         Assert.assertTrue(Double.valueOf(STARTING_BALANCE - amountToWithdraw).equals(testAccount.getBalance()));
     }
 
-    @Test(expected = TicketBookingException.class)
+    @Test(expected = AccountOperationsException.class)
     public void shouldThrowExceptionWhenNegativeAmount() throws Exception {
         double amountToWithdraw = - 50;
         target.withdrawMoney(testAccount, amountToWithdraw);

@@ -12,7 +12,7 @@ import beans.daos.mocks.UserDAOMock;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
-import com.booking.service.beans.services.BookingService;
+import com.booking.service.beans.services.TicketsService;
 import com.booking.service.beans.services.EventService;
 import org.junit.After;
 import org.junit.Before;
@@ -46,7 +46,7 @@ public class TestCounterAspect {
     private ApplicationContext applicationContext;
 
     @Autowired
-    private BookingService bookingService;
+    private TicketsService bookingService;
 
     @Autowired
     private EventService eventService;

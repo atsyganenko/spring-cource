@@ -3,7 +3,7 @@ package com.booking.service.beans.controllers;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
-import com.booking.service.beans.services.BookingService;
+import com.booking.service.beans.services.TicketsService;
 import com.booking.service.beans.services.EventService;
 import com.booking.service.beans.services.UserService;
 import com.booking.service.beans.views.TicketsPdfView;
@@ -29,13 +29,13 @@ import java.util.Map;
 @RequestMapping("tickets")
 public class TicketsController {
 
-    private final BookingService bookingService;
+    private final TicketsService bookingService;
     private final TicketsPdfView ticketsPDFView;
     private final UserService userService;
     private final EventService eventService;
 
     @Autowired
-    public TicketsController(BookingService bookingService, TicketsPdfView ticketsPDFView,
+    public TicketsController(TicketsService bookingService, TicketsPdfView ticketsPDFView,
                              UserService userService, EventService eventService) {
         this.bookingService = bookingService;
         this.ticketsPDFView = ticketsPDFView;

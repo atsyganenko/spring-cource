@@ -2,9 +2,9 @@ package com.booking.service.beans.daos;
 
 import com.booking.service.beans.models.User;
 import com.booking.service.beans.models.UserAccount;
-import com.booking.service.exceptions.TicketBookingException;
+import com.booking.service.exceptions.AccountOperationsException;
 
-import static com.booking.service.exceptions.TicketBookingException.NON_ENOUGH_MONEY;
+import static com.booking.service.exceptions.AccountOperationsException.NON_ENOUGH_MONEY;
 
 /**
  * Created by Anastasiia Tsyganenko
@@ -18,7 +18,7 @@ public interface UserAccountDAO {
 
     default void validateAccount(UserAccount account) {
         if (account.getBalance() < 0) {
-            throw new TicketBookingException(NON_ENOUGH_MONEY);
+            throw new AccountOperationsException(NON_ENOUGH_MONEY);
         }
     }
 }

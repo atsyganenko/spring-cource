@@ -30,11 +30,11 @@ public class CounterAspect {
     private void accessedByName(String eventName) {
     }
 
-    @Pointcut("(execution(* com.booking.service.beans.services.BookingService.getTicketPrice(String, ..)) && args(eventName,..))")
+    @Pointcut("(execution(* com.booking.service.beans.services.TicketsService.getTicketPrice(String, ..)) && args(eventName,..))")
     private void getPriceByName(String eventName) {
     }
 
-    @Pointcut("(execution(* com.booking.service.beans.services.BookingService.bookTicket(*, com.booking.service.beans.models.Ticket)) && args(*, ticket))")
+    @Pointcut("(execution(* com.booking.service.beans.services.TicketsService.bookTicket(*, com.booking.service.beans.models.Ticket)) && args(*, ticket))")
     private void bookTicketByName(Ticket ticket) {
     }
 
