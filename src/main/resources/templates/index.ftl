@@ -27,7 +27,18 @@
     </div>
 </nav>
 <div class="container">
-    <h3>Welcome to ticket booking system</h3>
+    <h3>Hi ${user.name}:)</h3>
+    <h3>Welcome to tickets booking system</h3>
+    Available balance: ${user.account.balance}
+    <form action="/balance/topUp" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <div class="input-group">
+            <input class="form-control" type="text" name="amount" placeholder="Amount"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Top up account"/>
+        </div>
+    </form>
 </div>
 </body>
 </html>

@@ -152,8 +152,7 @@ public class TicketsServiceImpl implements TicketsService {
     }
 
     @Override
-    public List<Ticket> getTicketsByUser(String userEmail) {
-        final User user = userService.getUserByEmail(userEmail);
+    public List<Ticket> getTicketsByUser(User user) {
         return bookingDAO.getTickets(user);
     }
 }

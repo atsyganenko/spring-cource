@@ -51,12 +51,8 @@
 
     <br/>
     <h3> Book ticket for event </h3>
-    <form action="/tickets/book" method="post">
+    <form action="/ticket/book" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <div class="input-group">
-            <p>User Email:</p>
-            <input class="form-control" type="text" name="userEmail" placeholder="User Email"/>
-        </div>
         <div class="input-group">
             <p>Event Id:</p>
             <input class="form-control" type="text" name="eventId" placeholder="Event Id"/>
@@ -72,7 +68,7 @@
 
 <#if isBookingManager?? && isBookingManager==true>
     <br/>
-    <form action="/tickets/booked" method="post">
+    <form action="/tickets" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="input-group">
             <input class="form-control" type="text" name="eventId" placeholder="Event Id"/>

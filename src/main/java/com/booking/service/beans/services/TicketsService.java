@@ -22,5 +22,5 @@ public interface TicketsService {
 
     List<Ticket> getTicketsForEvent(long eventId);
 
-    List<Ticket> getTicketsByUser(String userEmail);
+    List<Ticket> getTicketsByUser(User user);
 }
