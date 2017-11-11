@@ -4,7 +4,9 @@ import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
 import com.booking.service.beans.services.BookingFacade;
 import com.booking.service.beans.views.TicketsPdfView;
+import com.booking.service.exceptions.AccountOperationsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
+
+import static com.booking.service.exceptions.AccountOperationsException.*;
 
 /**
  * Created by Anastasiia Tsyganenko
@@ -35,7 +39,11 @@ public class BookingController {
 
     @RequestMapping("/balance/topUp")
     public String topUpAccount(@ModelAttribute("amount") double amount) {
-        bookingFacade.topUpAccount(amount);
+        try {
+            bookingFacade.topUpAccount(amount);
+        } catch (ConcurrencyFailureException e) {
+            throw new AccountOperationsException(TOO_MANY_SIMULTANEOUS_OPERATIONS);
+        }
         return "redirect:/home";
     }
 
@@ -61,9 +69,12 @@ public class BookingController {
 
     @RequestMapping(value = "/ticket/book", method = RequestMethod.POST)
     public String bookTicket(@ModelAttribute("eventId") long eventId, @ModelAttribute("seats") String seats) {
-        bookingFacade.bookTicketForEvent(eventId, seats);
+        try {
+            bookingFacade.bookTicketForEvent(eventId, seats);
+        } catch (ConcurrencyFailureException e) {
+            throw new AccountOperationsException(TOO_MANY_SIMULTANEOUS_OPERATIONS);
+        }
         return "redirect:/tickets/my";
-
     }
 
     @RequestMapping("login")

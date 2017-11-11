@@ -3,6 +3,7 @@ package com.booking.service.beans.models;
 public class UserAccount {
 
     private long id;
+    private long version;
     private double balance = 0;
 
     public long getId() {
@@ -21,6 +22,14 @@ public class UserAccount {
         this.balance = balance;
     }
 
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,8 +37,9 @@ public class UserAccount {
 
         UserAccount that = (UserAccount) o;
 
-        return id == that.id && Double.compare(that.balance, balance) == 0;
-
+        return id == that.id
+                && version == that.version
+                && Double.compare(that.balance, balance) == 0;
     }
 
     @Override
@@ -37,6 +47,7 @@ public class UserAccount {
         int result;
         long temp;
         result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (int) (version ^ (version >>> 32));
         temp = Double.doubleToLongBits(balance);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
@@ -46,6 +57,7 @@ public class UserAccount {
     public String toString() {
         return "UserAccount{" +
                 "id=" + id +
+                ", version=" + version +
                 ", balance=" + balance +
                 '}';
     }

@@ -16,6 +16,7 @@
         <id name="id" column="ACCOUNT_ID">
             <generator class="identity"/>
         </id>
+        <version name="version" type="long"/>
         <property name="balance" column="BALANCE" type="double"/>
     </class>
 
