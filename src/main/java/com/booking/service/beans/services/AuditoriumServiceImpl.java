@@ -16,7 +16,7 @@ import java.util.List;
  * Time: 11:14 AM
  */
 @Service("auditoriumServiceImpl")
-@Transactional
+@Transactional(readOnly = true)
 public class AuditoriumServiceImpl implements AuditoriumService {
 
     private final AuditoriumDAO auditoriumDAO;

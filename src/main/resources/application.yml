@@ -1,3 +1,7 @@
 spring:
   datasource:
     initialize: true
+
+hibernate:
+  conection:
+    isolation: 2

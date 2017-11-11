@@ -78,7 +78,7 @@ public class BookingController {
 
     @RequestMapping("home")
     public String home(Map<String, User> model) {
-        model.put("user", bookingFacade.getCurrentUserFromSecurityContext());
+        model.put("user", bookingFacade.getCurrentUser());
         return "index";
     }
 }
