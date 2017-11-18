@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,7 @@ public class UsersController {
         return "usersTable";
     }
 
+    @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     String uploadUsers(@RequestParam MultipartFile[] files) throws IOException {
         ObjectMapper mapper = new ObjectMapper();

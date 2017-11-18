@@ -8,6 +8,7 @@ import com.booking.service.beans.services.EventService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ public class EventController {
         this.eventService = eventService;
     }
 
+    @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     String uploadEvents(@RequestParam MultipartFile[] files) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
