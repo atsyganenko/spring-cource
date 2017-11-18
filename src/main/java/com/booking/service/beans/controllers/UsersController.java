@@ -56,8 +56,10 @@ public class UsersController {
 
     @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    String addUsers(@ModelAttribute("name") String name, @ModelAttribute("email") String email,
-                    @ModelAttribute("birthday") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday,
+    String addUsers(@ModelAttribute("name") String name,
+                    @ModelAttribute("email") String email,
+                    @ModelAttribute("birthday")
+                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday,
                     @ModelAttribute("password") String password,
                     @ModelAttribute("isBookingManager") String isBookingManager) {
         User user = new User(0, name, email, birthday);
