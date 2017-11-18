@@ -3,12 +3,8 @@ package com.booking.service.beans.services;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
-import com.booking.service.beans.models.UserAccount;
-import com.booking.service.beans.views.TicketsPdfView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,12 +36,12 @@ public class BookingFacade {
     }
 
     public void topUpAccount (double amount) {
-        userAccountService.topUpAccount(getCurrentUserFromSecurityContext().getAccount(), amount);
+        userAccountService.topUpAccount(getCurrentUser().getAccount(), amount);
     }
 
     public void bookTicketForEvent(long eventId, String seats) {
         Ticket ticket = new Ticket();
-        User user = getCurrentUserFromSecurityContext();
+        User user = getCurrentUser();
         Event event = eventService.getById(eventId);
         ticket.setUser(user);
         ticket.setEvent(event);
@@ -57,7 +53,7 @@ public class BookingFacade {
     }
 
     public List<Ticket> getBookedTickets() {
-        User user = getCurrentUserFromSecurityContext();
+        User user = getCurrentUser();
         return ticketsService.getTicketsByUser(user);
     }
 
@@ -65,9 +61,13 @@ public class BookingFacade {
         return ticketsService.getTicketsForEvent(eventId);
     }
 
-    public User getCurrentUserFromSecurityContext() {
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+    public User getCurrentUser() {
+        String userEmail = getCurrentUserEmailFromSecurityContext();
         return userService.getUserByEmail(userEmail);
+    }
+
+    private String getCurrentUserEmailFromSecurityContext() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
     private double getTicketPrice(Ticket ticket) {

@@ -10,10 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -125,17 +122,30 @@ public class TicketsServiceImpl implements TicketsService {
 
         List<Ticket> bookedTickets = bookingDAO.getTickets(ticket.getEvent());
 
-        if (!isSeatsAlreadyBooked(bookedTickets, ticket.getSeatsList()))
+        if (!isSeatsAlreadyBooked(bookedTickets, ticket.getSeatsList())) {
             bookingDAO.create(user, ticket);
-        else
+            checkIfNoSeatBookedMoreThanOneTime(ticket.getEvent());
+        }
+
+        else {
             throw new IllegalStateException("Unable to book ticket. Seats are already booked.");
+        }
 
         return ticket;
     }
 
+    private void checkIfNoSeatBookedMoreThanOneTime(Event event) {
+        List<Integer> allBookedTickets = new ArrayList<>();
+      bookingDAO.getTickets(event).stream()
+              .map(Ticket::getSeatsList).forEach(allBookedTickets::addAll);
+      if(!(allBookedTickets.size() == allBookedTickets.stream().distinct().count())) {
+          throw new IllegalStateException("Unable to book ticket. Someone booked these seats a second ago.");
+      }
+    }
+
     private boolean isSeatsAlreadyBooked(List<Ticket> bookedTickets, List<Integer> seatsToBook) {
 
-        return bookedTickets.stream().filter(ticket -> !Collections.disjoint(ticket.getSeatsList(), seatsToBook)).findAny().isPresent();
+        return bookedTickets.stream().anyMatch(ticket -> !Collections.disjoint(ticket.getSeatsList(), seatsToBook));
     }
 
     @Override
