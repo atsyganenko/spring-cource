@@ -3,11 +3,12 @@ package com.booking.service.beans.controllers;
 import com.booking.service.beans.models.Auditorium;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Rate;
-import com.booking.service.beans.models.UserRole;
+import com.booking.service.beans.services.AuditoriumService;
 import com.booking.service.beans.services.EventService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,9 +34,12 @@ import java.util.Map;
 public class EventController {
 
     private final EventService eventService;
+    private final AuditoriumService auditoriumService;
 
-    public EventController(EventService eventService) {
+    @Autowired
+    public EventController(EventService eventService, AuditoriumService auditoriumService) {
         this.eventService = eventService;
+        this.auditoriumService = auditoriumService;
     }
 
     @Secured("ROLE_BOOKING_MANAGER")
@@ -48,6 +52,16 @@ public class EventController {
         List<Event> events = mapper.readValue(files[0].getBytes(), new TypeReference<List<Event>>() {
         });
         events.forEach(eventService::create);
+        return "redirect:all";
+    }
+
+    @Secured("ROLE_BOOKING_MANAGER")
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    String addEvent(@ModelAttribute("event") Event event) {
+        Auditorium auditorium = auditoriumService.getByName(event.getAuditorium().getName());
+        event.setAuditorium(auditorium);
+        eventService.create(event);
+
         return "redirect:all";
     }
 
