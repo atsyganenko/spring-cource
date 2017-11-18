@@ -26,8 +26,7 @@ public class DefaultUserDetailsService implements UserDetailsService {
     }
 
     @Autowired
-    @Qualifier(value = "userToUserDetails")
-    public void setUserUserDetailsConverter(Converter<User, UserDetails> userUserDetailsConverter) {
+    public void setUserUserDetailsConverter(@Qualifier(value = "userToUserDetails") Converter<User, UserDetails> userUserDetailsConverter) {
         this.userUserDetailsConverter = userUserDetailsConverter;
     }
 
