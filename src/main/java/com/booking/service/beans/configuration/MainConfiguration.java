@@ -1,6 +1,5 @@
 package com.booking.service.beans.configuration;
 
-import com.booking.service.beans.services.DefaultUserDetailsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +26,7 @@ public class MainConfiguration {
     }
 
     @Bean
+    @Qualifier("daoAuthenticationProvider")
     public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder,
                                                                UserDetailsService userDetailsService) {
 
@@ -37,13 +37,7 @@ public class MainConfiguration {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new DefaultUserDetailsService();
-    }
-
-    @Bean
-    @Qualifier("dataSource")
-    PersistentTokenRepository persistentTokenRepository(DataSource dataSource) {
+    PersistentTokenRepository persistentTokenRepository(@Qualifier("dataSource") DataSource dataSource) {
         JdbcTokenRepositoryImpl persistentTokenRepository = new JdbcTokenRepositoryImpl();
         persistentTokenRepository.setDataSource(dataSource);
         return persistentTokenRepository;

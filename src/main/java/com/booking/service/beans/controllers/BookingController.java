@@ -1,7 +1,6 @@
 package com.booking.service.beans.controllers;
 
 import com.booking.service.beans.models.Ticket;
-import com.booking.service.beans.models.User;
 import com.booking.service.beans.services.BookingFacade;
 import com.booking.service.beans.views.TicketsPdfView;
 import com.booking.service.exceptions.AccountOperationsException;
@@ -13,11 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Map;
 
-import static com.booking.service.exceptions.AccountOperationsException.*;
+import static com.booking.service.exceptions.AccountOperationsException.TOO_MANY_SIMULTANEOUS_OPERATIONS;
 
 /**
  * Created by Anastasiia Tsyganenko
@@ -38,13 +39,15 @@ public class BookingController {
     }
 
     @RequestMapping("/balance/topUp")
-    public String topUpAccount(@ModelAttribute("amount") double amount) {
+    public RedirectView topUpAccount(@ModelAttribute("amount") double amount, RedirectAttributes attrs) {
         try {
             bookingFacade.topUpAccount(amount);
+        } catch (AccountOperationsException e) {
+            attrs.addFlashAttribute("errorMsg", e.getMessage());
         } catch (ConcurrencyFailureException e) {
             throw new AccountOperationsException(TOO_MANY_SIMULTANEOUS_OPERATIONS);
         }
-        return "redirect:/home";
+        return new RedirectView("/home");
     }
 
     @RequestMapping(value = "/tickets/my", method = RequestMethod.GET)
@@ -68,13 +71,17 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/ticket/book", method = RequestMethod.POST)
-    public String bookTicket(@ModelAttribute("eventId") long eventId, @ModelAttribute("seats") String seats) {
+    public RedirectView bookTicket(@ModelAttribute("eventId") long eventId, @ModelAttribute("seats") String seats,
+                                   RedirectAttributes attrs) {
         try {
             bookingFacade.bookTicketForEvent(eventId, seats);
+        } catch (AccountOperationsException e) {
+            attrs.addFlashAttribute("bookingErrorMsg", e.getMessage());
+            return new RedirectView("/events/all");
         } catch (ConcurrencyFailureException e) {
             throw new AccountOperationsException(TOO_MANY_SIMULTANEOUS_OPERATIONS);
         }
-        return "redirect:/tickets/my";
+        return new RedirectView("/tickets/my");
     }
 
     @RequestMapping("login")
@@ -88,7 +95,7 @@ public class BookingController {
     }
 
     @RequestMapping("home")
-    public String home(Map<String, User> model) {
+    public String home(Map<String, Object> model, @ModelAttribute("errorMsg") String errorMsg) {
         model.put("user", bookingFacade.getCurrentUser());
         return "index";
     }

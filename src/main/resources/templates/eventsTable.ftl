@@ -77,6 +77,11 @@
             <input type="submit" value="View all booked tickets for event"/>
         </div>
     </form>
+    <#if bookingErrorMsg?has_content>
+        <div class="alert alert-warning">
+        ${bookingErrorMsg}
+        </div>
+    </#if>
 </#if>
 </div>
 </body>

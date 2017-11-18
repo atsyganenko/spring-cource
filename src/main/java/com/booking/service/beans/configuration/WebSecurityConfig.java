@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 
@@ -24,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private AuthenticationProvider authenticationProvider;
     private PersistentTokenRepository persistentTokenRepository;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     public void setPersistentTokenRepository(PersistentTokenRepository persistentTokenRepository) {
@@ -35,6 +37,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.authenticationProvider = authenticationProvider;
     }
 
+    @Autowired
+    public void setUserDetailsService(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    @Override
+    protected UserDetailsService userDetailsService() {
+        return this.userDetailsService;
+    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {

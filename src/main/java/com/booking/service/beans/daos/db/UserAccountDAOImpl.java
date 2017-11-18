@@ -21,7 +21,6 @@ public class UserAccountDAOImpl extends AbstractDAO implements UserAccountDAO {
 
     @Override
     public void updateAccount(UserAccount account) {
-        validateAccount(account);
         getCurrentSession().update(account);
     }
 }

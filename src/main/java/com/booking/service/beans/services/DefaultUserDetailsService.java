@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * on 11/4/2017.
  */
 
-@Service("userDetailsService")
+@Service
 public class DefaultUserDetailsService implements UserDetailsService {
 
     private UserService userService;

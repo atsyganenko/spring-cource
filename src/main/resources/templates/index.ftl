@@ -39,6 +39,11 @@
             <input type="submit" value="Top up account"/>
         </div>
     </form>
+<#if errorMsg?has_content>
+    <div class="alert alert-warning">
+    ${errorMsg}
+    </div>
+</#if>
 </div>
 </body>
 </html>

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,7 +56,8 @@ public class EventController {
     }
 
     @RequestMapping("all")
-    String allEvents(Map<String, Object> model, HttpServletRequest request) {
+    String allEvents(Map<String, Object> model, HttpServletRequest request,
+                     @ModelAttribute("bookingErrorMsg") String bookingErrorMsg) {
         if (request.isUserInRole(UserRole.BOOKING_MANAGER.name())) {
             model.put("isBookingManager", true);
         }
