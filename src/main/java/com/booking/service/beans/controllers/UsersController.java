@@ -39,12 +39,6 @@ public class UsersController {
         return "usersTable";
     }
 
-    @RequestMapping("upload")
-    String uploadUsers(Map<String, String> model) {
-        model.put("formAction", "/users/upload");
-        return "uploadForm";
-    }
-
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     String uploadUsers(@RequestParam MultipartFile[] files) throws IOException {
         ObjectMapper mapper = new ObjectMapper();

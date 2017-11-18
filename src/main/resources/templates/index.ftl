@@ -14,6 +14,9 @@
                 <li class="active"><a href="/home">Home</a></li>
                 <li><a href="/users/all">Users</a></li>
                 <li><a href="/events/all">Events</a></li>
+            <#if isBookingManager?? && isBookingManager==true>
+                <li><a href="/administration">Administration</a></li>
+            </#if>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

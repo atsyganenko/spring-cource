@@ -1,5 +1,6 @@
 package com.booking.service.beans.configuration;
 
+import com.booking.service.beans.views.TicketsPdfView;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,5 +42,10 @@ public class MainConfiguration {
         JdbcTokenRepositoryImpl persistentTokenRepository = new JdbcTokenRepositoryImpl();
         persistentTokenRepository.setDataSource(dataSource);
         return persistentTokenRepository;
+    }
+
+    @Bean
+    TicketsPdfView ticketsPdfView() {
+        return new TicketsPdfView();
     }
 }

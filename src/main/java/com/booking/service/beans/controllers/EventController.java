@@ -37,12 +37,6 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @RequestMapping("upload")
-    String uploadEvents(Map<String, String> model) {
-        model.put("formAction", "/events/upload");
-        return "uploadForm";
-    }
-
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     String uploadEvents(@RequestParam MultipartFile[] files) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -58,9 +52,6 @@ public class EventController {
     @RequestMapping("all")
     String allEvents(Map<String, Object> model, HttpServletRequest request,
                      @ModelAttribute("bookingErrorMsg") String bookingErrorMsg) {
-        if (request.isUserInRole(UserRole.BOOKING_MANAGER.name())) {
-            model.put("isBookingManager", true);
-        }
         model.put("events", eventService.getAll());
         return "eventsTable";
     }

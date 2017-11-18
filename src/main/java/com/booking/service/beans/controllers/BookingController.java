@@ -100,4 +100,10 @@ public class BookingController {
         model.put("user", bookingFacade.getCurrentUser());
         return "index";
     }
+
+    @Secured("ROLE_BOOKING_MANAGER")
+    @RequestMapping("administration")
+    public  String administration() {
+        return "administration";
+    }
 }

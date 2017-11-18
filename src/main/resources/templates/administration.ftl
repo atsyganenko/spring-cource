@@ -12,11 +12,9 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/home">Home</a></li>
-                <li class="active"><a href="/users/all">Users</a></li>
+                <li><a href="/users/all">Users</a></li>
                 <li><a href="/events/all">Events</a></li>
-            <#if isBookingManager?? && isBookingManager==true>
-                <li><a href="/administration">Administration</a></li>
-            </#if>
+                <li class="active"><a href="/administration">Administration</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -30,23 +28,18 @@
     </div>
 </nav>
 <div class="container">
-    <table class="table">
-        <caption>Users</caption>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Date of birth</th>
-        </tr>
-    <#list users as user>
-        <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.birthday}</td>
-        </tr>
-    </#list>
-    </table>
+    <h3>Multiple users upload from json file</h3>
+    <form action= "/users/upload" enctype="multipart/form-data" method="post">
+        Select json files: <input type="file" name="files" multiple>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="submit" value="Upload"/>
+    </form>
+    <h3>Multiple events upload from json file</h3>
+    <form action= "/events/upload" enctype="multipart/form-data" method="post">
+        Select json files: <input type="file" name="files" multiple>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="submit" value="Upload"/>
+    </form>
 </div>
 </body>
 </html>

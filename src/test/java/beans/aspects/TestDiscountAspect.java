@@ -6,7 +6,7 @@ import beans.daos.mocks.DBAuditoriumDAOMock;
 import beans.daos.mocks.EventDAOMock;
 import beans.daos.mocks.UserDAOMock;
 import com.booking.service.beans.aspects.DiscountAspect;
-import com.booking.service.beans.configuration.AppConfiguration;
+import com.booking.service.beans.configuration.WebMvcConfiguration;
 import com.booking.service.beans.configuration.db.DataSourceConfiguration;
 import com.booking.service.beans.configuration.db.DbSessionFactory;
 import com.booking.service.beans.models.Event;
@@ -41,7 +41,7 @@ import static junit.framework.Assert.assertEquals;
  * Time: 7:20 PM
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {AppConfiguration.class, DataSourceConfiguration.class, DbSessionFactory.class,
+@ContextConfiguration(classes = {WebMvcConfiguration.class, DataSourceConfiguration.class, DbSessionFactory.class,
         beans.configuration.TestAspectsConfiguration.class})
 @Transactional
 public class TestDiscountAspect {
