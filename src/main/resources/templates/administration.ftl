@@ -29,16 +29,41 @@
 </nav>
 <div class="container">
 
+    <h3>Create single user</h3>
+    <form action="/users/add" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <div class="input-group">
+            <label for="name">Name:</label for="name">
+            <input class="form-control" type="text" id="name" name="name" placeholder="User Name"/>
+        </div>
+        <div class="input-group">
+            <label for="email">Email:</label for="email">
+            <input class="form-control" type="text" id="email" name="email" placeholder="User Email"/>
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label for="password">
+            <input class="form-control" type="password" id="password" name="password" placeholder="New Password"/>
+        </div>
+        <label>Booking manager: <input type="checkbox" name="isBookingManager"/> </label>
+        <div class="input-group">
+            <label for="date">Date of birth:</label>
+            <input class="form-control" type="date" id="date" name="birthday" placeholder="Select Date"/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add User"/>
+        </div>
+    </form>
+
     <h3>Create single event</h3>
-    <form name = "event" action="/events/add" method="post">
+    <form name="event" action="/events/add" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="input-group">
             <label for="name">Name:</label>
-            <input class="form-control" type="text" id ="name" name="name" placeholder="Event Name"/>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Event Name"/>
         </div>
         <div class="input-group">
             <label for="price">Base Price:</label>
-            <input class="form-control" type="text" id ="price" name="basePrice" placeholder="0.00"/>
+            <input class="form-control" type="text" id="price" name="basePrice" placeholder="0.00"/>
         </div>
         <div class="input-group">
             <label for="rate">Rate:</label>

@@ -1,20 +1,21 @@
 package com.booking.service.beans.controllers;
 
 import com.booking.service.beans.models.User;
+import com.booking.service.beans.models.UserRole;
 import com.booking.service.beans.services.UserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -28,10 +29,12 @@ import java.util.Map;
 public class UsersController {
 
     private final UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    UsersController(UserService userService) {
+    UsersController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("all")
@@ -48,6 +51,21 @@ public class UsersController {
         List<User> users = mapper.readValue(files[0].getBytes(), new TypeReference<List<User>>() {
         });
         users.forEach(userService::register);
+        return "redirect:all";
+    }
+
+    @Secured("ROLE_BOOKING_MANAGER")
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    String addUsers(@ModelAttribute("name") String name, @ModelAttribute("email") String email,
+                    @ModelAttribute("birthday") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday,
+                    @ModelAttribute("password") String password,
+                    @ModelAttribute("isBookingManager") String isBookingManager) {
+        User user = new User(0, name, email, birthday);
+        user.setEncryptedPassword(passwordEncoder.encode(password));
+        if ("on".equals(isBookingManager)) {
+            user.addRole(UserRole.BOOKING_MANAGER.name());
+        }
+        userService.register(user);
         return "redirect:all";
     }
 
