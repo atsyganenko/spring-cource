@@ -3,6 +3,7 @@ package com.booking.service.beans.services;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
+import com.booking.service.exceptions.TicketBookingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -39,10 +40,13 @@ public class BookingFacade {
         userAccountService.topUpAccount(getCurrentUser().getAccount(), amount);
     }
 
-    public void bookTicketForEvent(long eventId, String seats) {
+    public void bookTicketForEvent(String eventId, String seats) {
         Ticket ticket = new Ticket();
         User user = getCurrentUser();
-        Event event = eventService.getById(eventId);
+        Event event = eventService.getById(Long.parseLong(eventId));
+        if(event == null) {
+            throw TicketBookingException.newEventNotFoundException(eventId);
+        }
         ticket.setUser(user);
         ticket.setEvent(event);
         ticket.setDateTime(LocalDateTime.now());

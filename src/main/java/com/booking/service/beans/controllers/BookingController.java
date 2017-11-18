@@ -4,6 +4,7 @@ import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.services.BookingFacade;
 import com.booking.service.beans.views.TicketsPdfView;
 import com.booking.service.exceptions.AccountOperationsException;
+import com.booking.service.exceptions.TicketBookingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.security.access.annotation.Secured;
@@ -71,11 +72,11 @@ public class BookingController {
     }
 
     @RequestMapping(value = "/ticket/book", method = RequestMethod.POST)
-    public RedirectView bookTicket(@ModelAttribute("eventId") long eventId, @ModelAttribute("seats") String seats,
+    public RedirectView bookTicket(@ModelAttribute("eventId") String eventId, @ModelAttribute("seats") String seats,
                                    RedirectAttributes attrs) {
         try {
             bookingFacade.bookTicketForEvent(eventId, seats);
-        } catch (AccountOperationsException e) {
+        } catch (AccountOperationsException | TicketBookingException e) {
             attrs.addFlashAttribute("bookingErrorMsg", e.getMessage());
             return new RedirectView("/events/all");
         } catch (ConcurrencyFailureException e) {
