@@ -1,8 +1,8 @@
-package com.booking.service.beans.controllers;
+package com.booking.beans.controllers;
 
-import com.booking.service.beans.models.Ticket;
-import com.booking.service.beans.services.BookingFacade;
-import com.booking.service.beans.views.TicketsPdfView;
+import com.booking.beans.models.Ticket;
+import com.booking.beans.services.BookingFacade;
+import com.booking.beans.views.TicketsPdfView;
 import com.booking.exceptions.AccountOperationsException;
 import com.booking.exceptions.TicketBookingException;
 import org.springframework.beans.factory.annotation.Autowired;

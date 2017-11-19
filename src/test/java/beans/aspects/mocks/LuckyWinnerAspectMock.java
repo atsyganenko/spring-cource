@@ -1,6 +1,6 @@
 package beans.aspects.mocks;
 
-import com.booking.service.beans.aspects.LuckyWinnerAspect;
+import com.booking.beans.aspects.LuckyWinnerAspect;
 
 /**
  * Created with IntelliJ IDEA.

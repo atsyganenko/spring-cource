@@ -1,7 +1,7 @@
-package com.booking.service.beans.daos.inmemory;
+package com.booking.beans.daos.inmemory;
 
-import com.booking.service.beans.daos.UserDAO;
-import com.booking.service.beans.models.User;
+import com.booking.beans.daos.UserDAO;
+import com.booking.beans.models.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

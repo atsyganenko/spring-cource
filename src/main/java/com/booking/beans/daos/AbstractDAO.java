@@ -1,4 +1,4 @@
-package com.booking.service.beans.daos;
+package com.booking.beans.daos;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;

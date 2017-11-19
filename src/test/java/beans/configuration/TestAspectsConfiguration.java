@@ -1,8 +1,8 @@
 package beans.configuration;
 
-import com.booking.service.beans.aspects.CounterAspect;
-import com.booking.service.beans.aspects.DiscountAspect;
-import com.booking.service.beans.aspects.LuckyWinnerAspect;
+import com.booking.beans.aspects.CounterAspect;
+import com.booking.beans.aspects.DiscountAspect;
+import com.booking.beans.aspects.LuckyWinnerAspect;
 import beans.aspects.mocks.DiscountAspectMock;
 import beans.aspects.mocks.LuckyWinnerAspectMock;
 import org.springframework.context.annotation.Bean;

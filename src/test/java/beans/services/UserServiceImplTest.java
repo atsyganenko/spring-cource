@@ -1,13 +1,13 @@
 package beans.services;
 
-import com.booking.service.beans.configuration.WebMvcConfiguration;
+import com.booking.beans.configuration.WebMvcConfiguration;
 import beans.configuration.TestUserServiceConfiguration;
-import com.booking.service.beans.configuration.db.DataSourceConfiguration;
-import com.booking.service.beans.configuration.db.DbSessionFactory;
+import com.booking.beans.configuration.db.DataSourceConfiguration;
+import com.booking.beans.configuration.db.DbSessionFactory;
 import beans.daos.mocks.UserDAOMock;
-import com.booking.service.beans.models.User;
-import com.booking.service.beans.models.UserRole;
-import com.booking.service.beans.services.UserService;
+import com.booking.beans.models.User;
+import com.booking.beans.models.UserRole;
+import com.booking.beans.services.UserService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

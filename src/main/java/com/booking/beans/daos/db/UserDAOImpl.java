@@ -1,10 +1,10 @@
-package com.booking.service.beans.daos.db;
+package com.booking.beans.daos.db;
 
-import com.booking.service.beans.daos.AbstractDAO;
-import com.booking.service.beans.daos.UserDAO;
-import com.booking.service.beans.models.User;
-import com.booking.service.beans.models.UserAccount;
-import com.booking.service.beans.models.UserRole;
+import com.booking.beans.daos.AbstractDAO;
+import com.booking.beans.daos.UserDAO;
+import com.booking.beans.models.User;
+import com.booking.beans.models.UserAccount;
+import com.booking.beans.models.UserRole;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;

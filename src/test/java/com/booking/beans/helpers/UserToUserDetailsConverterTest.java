@@ -1,7 +1,7 @@
-package com.booking.service.beans.helpers;
+package com.booking.beans.helpers;
 
 
-import com.booking.service.beans.models.User;
+import com.booking.beans.models.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

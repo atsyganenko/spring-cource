@@ -1,6 +1,6 @@
-package com.booking.service.beans.services.discount;
+package com.booking.beans.services.discount;
 
-import com.booking.service.beans.models.User;
+import com.booking.beans.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

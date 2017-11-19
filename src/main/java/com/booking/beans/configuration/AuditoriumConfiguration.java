@@ -1,6 +1,6 @@
-package com.booking.service.beans.configuration;
+package com.booking.beans.configuration;
 
-import com.booking.service.beans.models.Auditorium;
+import com.booking.beans.models.Auditorium;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

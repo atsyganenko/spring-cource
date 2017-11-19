@@ -10,14 +10,14 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.booking.service.beans.models">
+<hibernate-mapping package="com.booking.beans.models">
 
-    <class name="com.booking.service.beans.models.Booking" table="BOOKING">
+    <class name="com.booking.beans.models.Booking" table="BOOKING">
         <id name="id" column="ID">
             <generator class="identity"/>
         </id>
-        <many-to-one name="user" class="com.booking.service.beans.models.User" column="USER" fetch="join" lazy="false"/>
-        <many-to-one name="ticket" class="com.booking.service.beans.models.Ticket" column="TICKET" fetch="join" lazy="false"/>
+        <many-to-one name="user" class="com.booking.beans.models.User" column="USER" fetch="join" lazy="false"/>
+        <many-to-one name="ticket" class="com.booking.beans.models.Ticket" column="TICKET" fetch="join" lazy="false"/>
     </class>
 
 </hibernate-mapping>

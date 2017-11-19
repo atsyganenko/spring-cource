@@ -1,11 +1,11 @@
 package beans.configuration;
 
-import com.booking.service.beans.daos.BookingDAO;
+import com.booking.beans.daos.BookingDAO;
 import beans.daos.mocks.BookingDAODiscountMock;
-import com.booking.service.beans.services.DiscountService;
-import com.booking.service.beans.services.DiscountServiceImpl;
-import com.booking.service.beans.services.discount.BirthdayStrategy;
-import com.booking.service.beans.services.discount.TicketsStrategy;
+import com.booking.beans.services.DiscountService;
+import com.booking.beans.services.DiscountServiceImpl;
+import com.booking.beans.services.discount.BirthdayStrategy;
+import com.booking.beans.services.discount.TicketsStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

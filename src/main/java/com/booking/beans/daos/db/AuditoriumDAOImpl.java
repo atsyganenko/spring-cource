@@ -1,8 +1,8 @@
-package com.booking.service.beans.daos.db;
+package com.booking.beans.daos.db;
 
-import com.booking.service.beans.daos.AbstractDAO;
-import com.booking.service.beans.daos.AuditoriumDAO;
-import com.booking.service.beans.models.Auditorium;
+import com.booking.beans.daos.AbstractDAO;
+import com.booking.beans.daos.AuditoriumDAO;
+import com.booking.beans.models.Auditorium;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 

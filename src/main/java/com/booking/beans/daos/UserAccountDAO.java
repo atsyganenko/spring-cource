@@ -1,7 +1,7 @@
-package com.booking.service.beans.daos;
+package com.booking.beans.daos;
 
-import com.booking.service.beans.models.User;
-import com.booking.service.beans.models.UserAccount;
+import com.booking.beans.models.User;
+import com.booking.beans.models.UserAccount;
 
 /**
  * Created by Anastasiia Tsyganenko

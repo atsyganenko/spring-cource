@@ -1,8 +1,8 @@
-package com.booking.service.beans.controllers;
+package com.booking.beans.controllers;
 
-import com.booking.service.beans.models.User;
-import com.booking.service.beans.models.UserRole;
-import com.booking.service.beans.services.UserService;
+import com.booking.beans.models.User;
+import com.booking.beans.models.UserRole;
+import com.booking.beans.services.UserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

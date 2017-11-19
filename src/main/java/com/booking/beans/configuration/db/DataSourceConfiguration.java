@@ -1,4 +1,4 @@
-package com.booking.service.beans.configuration.db;
+package com.booking.beans.configuration.db;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

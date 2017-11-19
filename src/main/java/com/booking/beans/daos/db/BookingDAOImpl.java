@@ -1,11 +1,11 @@
-package com.booking.service.beans.daos.db;
+package com.booking.beans.daos.db;
 
-import com.booking.service.beans.daos.AbstractDAO;
-import com.booking.service.beans.daos.BookingDAO;
-import com.booking.service.beans.models.Booking;
-import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.Ticket;
-import com.booking.service.beans.models.User;
+import com.booking.beans.daos.AbstractDAO;
+import com.booking.beans.daos.BookingDAO;
+import com.booking.beans.models.Booking;
+import com.booking.beans.models.Event;
+import com.booking.beans.models.Ticket;
+import com.booking.beans.models.User;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 

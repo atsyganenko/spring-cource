@@ -1,7 +1,7 @@
-package com.booking.service.beans.controllers;
+package com.booking.beans.controllers;
 
-import com.booking.service.beans.models.Auditorium;
-import com.booking.service.beans.services.AuditoriumService;
+import com.booking.beans.models.Auditorium;
+import com.booking.beans.services.AuditoriumService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

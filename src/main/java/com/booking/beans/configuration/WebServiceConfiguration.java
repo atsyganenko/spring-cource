@@ -1,4 +1,4 @@
-package com.booking.service.beans.configuration;
+package com.booking.beans.configuration;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;

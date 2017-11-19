@@ -1,7 +1,7 @@
-package com.booking.service.beans.services;
+package com.booking.beans.services;
 
-import com.booking.service.beans.models.Auditorium;
-import com.booking.service.beans.models.Event;
+import com.booking.beans.models.Auditorium;
+import com.booking.beans.models.Event;
 
 import java.time.LocalDateTime;
 import java.util.List;

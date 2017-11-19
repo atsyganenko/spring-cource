@@ -1,10 +1,10 @@
 package beans.configuration;
 
-import com.booking.service.beans.daos.AuditoriumDAO;
+import com.booking.beans.daos.AuditoriumDAO;
 import beans.daos.mocks.DBAuditoriumDAOMock;
-import com.booking.service.beans.models.Auditorium;
-import com.booking.service.beans.services.AuditoriumService;
-import com.booking.service.beans.services.AuditoriumServiceImpl;
+import com.booking.beans.models.Auditorium;
+import com.booking.beans.services.AuditoriumService;
+import com.booking.beans.services.AuditoriumServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

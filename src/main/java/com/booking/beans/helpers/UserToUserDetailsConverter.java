@@ -1,11 +1,11 @@
-package com.booking.service.beans.helpers;
+package com.booking.beans.helpers;
 /*
  * Created by Anastasiia Tsyganenko
  * on 11/4/2017.
  */
 
-import com.booking.service.beans.models.SecurityUserDetails;
-import com.booking.service.beans.models.User;
+import com.booking.beans.models.SecurityUserDetails;
+import com.booking.beans.models.User;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

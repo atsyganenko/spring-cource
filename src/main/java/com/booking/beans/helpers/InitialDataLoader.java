@@ -1,12 +1,12 @@
-package com.booking.service.beans.helpers;
+package com.booking.beans.helpers;
 
-import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.Rate;
-import com.booking.service.beans.models.User;
-import com.booking.service.beans.models.UserRole;
-import com.booking.service.beans.services.AuditoriumService;
-import com.booking.service.beans.services.EventService;
-import com.booking.service.beans.services.UserService;
+import com.booking.beans.models.Event;
+import com.booking.beans.models.Rate;
+import com.booking.beans.models.User;
+import com.booking.beans.models.UserRole;
+import com.booking.beans.services.AuditoriumService;
+import com.booking.beans.services.EventService;
+import com.booking.beans.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

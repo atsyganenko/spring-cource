@@ -1,6 +1,6 @@
-package com.booking.service.beans.aspects;
+package com.booking.beans.aspects;
 
-import com.booking.service.beans.models.Ticket;
+import com.booking.beans.models.Ticket;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -25,16 +25,16 @@ public class CounterAspect {
     protected static final Map<String, Integer> getPriceByNameCounter = new HashMap<>();
     protected static final Map<String, Integer> bookByNameCounter     = new HashMap<>();
 
-    @Pointcut("(execution(* com.booking.service.beans.services.EventService.getEvent(String, ..)) && args(eventName, ..)) || "
-              + "execution(* com.booking.service.beans.services.EventService.getByName(String)) && args(eventName))")
+    @Pointcut("(execution(* com.booking.beans.services.EventService.getEvent(String, ..)) && args(eventName, ..)) || "
+              + "execution(* com.booking.beans.services.EventService.getByName(String)) && args(eventName))")
     private void accessedByName(String eventName) {
     }
 
-    @Pointcut("(execution(* com.booking.service.beans.services.TicketsService.getTicketPrice(String, ..)) && args(eventName,..))")
+    @Pointcut("(execution(* com.booking.beans.services.TicketsService.getTicketPrice(String, ..)) && args(eventName,..))")
     private void getPriceByName(String eventName) {
     }
 
-    @Pointcut("(execution(* com.booking.service.beans.services.TicketsService.bookTicket(*, com.booking.service.beans.models.Ticket)) && args(*, ticket))")
+    @Pointcut("(execution(* com.booking.beans.services.TicketsService.bookTicket(*, com.booking.beans.models.Ticket)) && args(*, ticket))")
     private void bookTicketByName(Ticket ticket) {
     }
 

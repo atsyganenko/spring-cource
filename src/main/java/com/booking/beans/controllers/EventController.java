@@ -1,10 +1,10 @@
-package com.booking.service.beans.controllers;
+package com.booking.beans.controllers;
 
-import com.booking.service.beans.models.Auditorium;
-import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.Rate;
-import com.booking.service.beans.services.AuditoriumService;
-import com.booking.service.beans.services.EventService;
+import com.booking.beans.models.Auditorium;
+import com.booking.beans.models.Event;
+import com.booking.beans.models.Rate;
+import com.booking.beans.services.AuditoriumService;
+import com.booking.beans.services.EventService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

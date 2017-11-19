@@ -1,6 +1,6 @@
-package com.booking.service.beans.configuration;
+package com.booking.beans.configuration;
 
-import com.booking.service.beans.views.TicketsPdfView;
+import com.booking.beans.views.TicketsPdfView;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

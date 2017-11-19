@@ -1,4 +1,4 @@
-package com.booking.service.beans.endpoints;
+package com.booking.beans.endpoints;
 
 /**
  * Created by Anastasiia Tsyganenko

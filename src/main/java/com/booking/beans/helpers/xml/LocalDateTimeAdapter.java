@@ -1,4 +1,4 @@
-package com.booking.service.beans.helpers.xml;
+package com.booking.beans.helpers.xml;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDateTime;

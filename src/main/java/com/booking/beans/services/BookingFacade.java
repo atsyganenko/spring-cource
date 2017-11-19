@@ -1,8 +1,8 @@
-package com.booking.service.beans.services;
+package com.booking.beans.services;
 
-import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.Ticket;
-import com.booking.service.beans.models.User;
+import com.booking.beans.models.Event;
+import com.booking.beans.models.Ticket;
+import com.booking.beans.models.User;
 import com.booking.exceptions.TicketBookingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

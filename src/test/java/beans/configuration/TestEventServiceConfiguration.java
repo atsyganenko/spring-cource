@@ -1,11 +1,11 @@
 package beans.configuration;
 
-import com.booking.service.beans.daos.EventDAO;
+import com.booking.beans.daos.EventDAO;
 import beans.daos.mocks.EventDAOMock;
-import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.Rate;
-import com.booking.service.beans.services.EventService;
-import com.booking.service.beans.services.EventServiceImpl;
+import com.booking.beans.models.Event;
+import com.booking.beans.models.Rate;
+import com.booking.beans.services.EventService;
+import com.booking.beans.services.EventServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

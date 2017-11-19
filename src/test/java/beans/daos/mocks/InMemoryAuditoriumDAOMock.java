@@ -1,7 +1,7 @@
 package beans.daos.mocks;
 
-import com.booking.service.beans.daos.inmemory.InMemoryAuditoriumDAO;
-import com.booking.service.beans.models.Auditorium;
+import com.booking.beans.daos.inmemory.InMemoryAuditoriumDAO;
+import com.booking.beans.models.Auditorium;
 
 import java.util.List;
 

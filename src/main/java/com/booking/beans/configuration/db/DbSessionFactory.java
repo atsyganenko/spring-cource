@@ -1,4 +1,4 @@
-package com.booking.service.beans.configuration.db;
+package com.booking.beans.configuration.db;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

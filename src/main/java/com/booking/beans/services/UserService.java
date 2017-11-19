@@ -1,6 +1,6 @@
-package com.booking.service.beans.services;
+package com.booking.beans.services;
 
-import com.booking.service.beans.models.User;
+import com.booking.beans.models.User;
 
 import java.util.List;
 

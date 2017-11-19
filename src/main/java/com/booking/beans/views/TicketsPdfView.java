@@ -1,6 +1,6 @@
-package com.booking.service.beans.views;
+package com.booking.beans.views;
 
-import com.booking.service.beans.models.Ticket;
+import com.booking.beans.models.Ticket;
 import com.lowagie.text.Document;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;

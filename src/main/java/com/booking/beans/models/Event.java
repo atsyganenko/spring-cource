@@ -1,6 +1,6 @@
-package com.booking.service.beans.models;
+package com.booking.beans.models;
 
-import com.booking.service.beans.helpers.xml.LocalDateTimeAdapter;
+import com.booking.beans.helpers.xml.LocalDateTimeAdapter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.xml.bind.annotation.*;

@@ -1,7 +1,7 @@
-package com.booking.service.beans.services;
+package com.booking.beans.services;
 
-import com.booking.service.beans.daos.UserAccountDAO;
-import com.booking.service.beans.models.UserAccount;
+import com.booking.beans.daos.UserAccountDAO;
+import com.booking.beans.models.UserAccount;
 import com.booking.exceptions.AccountOperationsException;
 import org.junit.Assert;
 import org.junit.Before;

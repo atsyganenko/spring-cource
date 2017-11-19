@@ -1,6 +1,6 @@
-package com.booking.service.beans.models;
+package com.booking.beans.models;
 
-import com.booking.service.beans.helpers.xml.LocalDateAdapter;
+import com.booking.beans.helpers.xml.LocalDateAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

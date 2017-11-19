@@ -1,7 +1,7 @@
 package beans.daos.mocks;
 
-import com.booking.service.beans.daos.db.UserDAOImpl;
-import com.booking.service.beans.models.User;
+import com.booking.beans.daos.db.UserDAOImpl;
+import com.booking.beans.models.User;
 
 import java.util.List;
 

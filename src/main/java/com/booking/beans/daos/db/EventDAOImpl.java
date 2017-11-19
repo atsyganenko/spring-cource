@@ -1,9 +1,9 @@
-package com.booking.service.beans.daos.db;
+package com.booking.beans.daos.db;
 
-import com.booking.service.beans.daos.AbstractDAO;
-import com.booking.service.beans.daos.EventDAO;
-import com.booking.service.beans.models.Auditorium;
-import com.booking.service.beans.models.Event;
+import com.booking.beans.daos.AbstractDAO;
+import com.booking.beans.daos.EventDAO;
+import com.booking.beans.models.Auditorium;
+import com.booking.beans.models.Event;
 import org.hibernate.Query;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;

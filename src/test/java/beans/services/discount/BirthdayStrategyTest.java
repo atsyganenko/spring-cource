@@ -1,7 +1,7 @@
 package beans.services.discount;
 
-import com.booking.service.beans.models.User;
-import com.booking.service.beans.services.discount.BirthdayStrategy;
+import com.booking.beans.models.User;
+import com.booking.beans.services.discount.BirthdayStrategy;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

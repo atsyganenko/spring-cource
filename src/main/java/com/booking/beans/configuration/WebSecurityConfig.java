@@ -1,6 +1,6 @@
-package com.booking.service.beans.configuration;
+package com.booking.beans.configuration;
 
-import com.booking.service.beans.models.UserRole;
+import com.booking.beans.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;

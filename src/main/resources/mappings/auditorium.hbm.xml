@@ -10,9 +10,9 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.booking.service.beans.models">
+<hibernate-mapping package="com.booking.beans.models">
 
-    <class name="com.booking.service.beans.models.Auditorium" table="AUDITORIUM">
+    <class name="com.booking.beans.models.Auditorium" table="AUDITORIUM">
         <id name="id" column="ID">
             <generator class="identity"/>
         </id>

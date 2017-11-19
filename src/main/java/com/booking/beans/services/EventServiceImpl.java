@@ -1,8 +1,8 @@
-package com.booking.service.beans.services;
+package com.booking.beans.services;
 
-import com.booking.service.beans.daos.EventDAO;
-import com.booking.service.beans.models.Auditorium;
-import com.booking.service.beans.models.Event;
+import com.booking.beans.daos.EventDAO;
+import com.booking.beans.models.Auditorium;
+import com.booking.beans.models.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

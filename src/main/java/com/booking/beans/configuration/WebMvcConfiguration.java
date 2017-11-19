@@ -1,6 +1,6 @@
-package com.booking.service.beans.configuration;
+package com.booking.beans.configuration;
 
-import com.booking.service.beans.helpers.BookingManagerIdentifier;
+import com.booking.beans.helpers.BookingManagerIdentifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

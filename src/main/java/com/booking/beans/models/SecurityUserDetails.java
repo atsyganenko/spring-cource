@@ -1,4 +1,4 @@
-package com.booking.service.beans.models;
+package com.booking.beans.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

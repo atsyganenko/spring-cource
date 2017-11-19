@@ -1,8 +1,8 @@
-package com.booking.service.beans.services;
+package com.booking.beans.services;
 
-import com.booking.service.beans.models.Event;
-import com.booking.service.beans.models.User;
-import com.booking.service.beans.services.discount.DiscountStrategy;
+import com.booking.beans.models.Event;
+import com.booking.beans.models.User;
+import com.booking.beans.services.discount.DiscountStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

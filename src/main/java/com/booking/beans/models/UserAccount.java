@@ -1,4 +1,4 @@
-package com.booking.service.beans.models;
+package com.booking.beans.models;
 
 public class UserAccount {
 

@@ -1,6 +1,6 @@
-package com.booking.service.beans.helpers;
+package com.booking.beans.helpers;
 
-import com.booking.service.beans.models.UserRole;
+import com.booking.beans.models.UserRole;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

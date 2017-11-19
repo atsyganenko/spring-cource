@@ -1,7 +1,7 @@
-package com.booking.service.beans.services.discount;
+package com.booking.beans.services.discount;
 
-import com.booking.service.beans.daos.BookingDAO;
-import com.booking.service.beans.models.User;
+import com.booking.beans.daos.BookingDAO;
+import com.booking.beans.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
