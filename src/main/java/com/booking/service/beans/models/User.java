@@ -12,7 +12,7 @@ import java.util.Set;
 
 @XmlRootElement(name = "user")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "booking/user", propOrder = {"id", "name", "email", "birthday", "roles"})
+@XmlType(namespace = "http://booking.com", propOrder = {"id", "name", "email", "birthday", "roles"})
 public class User {
 
     @XmlAttribute

@@ -114,24 +114,14 @@
                     <outputDirectory>src/main/resources/xsd</outputDirectory>
                     <transformSchemas>
                         <transformSchema>
-                            <uri>booking/user</uri>
+                            <uri>com/booking</uri>
                             <toPrefix>user</toPrefix>
                             <toFile>user.xsd</toFile>
                         </transformSchema>
                         <transformSchema>
-                            <uri>booking/event</uri>
-                            <toPrefix>event</toPrefix>
-                            <toFile>event.xsd</toFile>
-                        </transformSchema>
-                        <transformSchema>
-                            <uri>booking/auditorium</uri>
-                            <toPrefix>auditorium</toPrefix>
-                            <toFile>auditorium.xsd</toFile>
-                        </transformSchema>
-                        <transformSchema>
-                            <uri>booking/rate</uri>
-                            <toPrefix>rate</toPrefix>
-                            <toFile>rate.xsd</toFile>
+                            <uri>http://booking.com</uri>
+                            <toPrefix>booking</toPrefix>
+                            <toFile>booking.xsd</toFile>
                         </transformSchema>
                     </transformSchemas>
                 </configuration>

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @XmlRootElement(name = "event")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "booking/event", propOrder = {"id", "name", "rate", "basePrice", "dateTime", "auditorium"})
+@XmlType(namespace = "http://booking.com", propOrder = {"id", "name", "rate", "basePrice", "dateTime", "auditorium"})
 public class Event {
     @XmlAttribute
     private long id;

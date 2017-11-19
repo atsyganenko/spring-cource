@@ -2,7 +2,7 @@ package com.booking.service.beans.models;
 
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(namespace = "booking/rate")
+@XmlType(namespace = "http://booking.com")
 public enum Rate {
     HIGH, MID, LOW
 }

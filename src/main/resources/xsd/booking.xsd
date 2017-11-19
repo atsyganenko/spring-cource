@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:booking="http://booking.com" targetNamespace="http://booking.com" version="1.0">
+
+  <xs:import schemaLocation="base.xsd"/>
+
+  <xs:complexType name="auditorium">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="seatsNumber" type="xs:int"/>
+      <xs:element minOccurs="0" name="vipSeats" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="event">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="rate" type="booking:rate"/>
+      <xs:element name="price" type="xs:double"/>
+      <xs:element minOccurs="0" name="dateTime" type="xs:string"/>
+      <xs:element minOccurs="0" ref="auditorium"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="email" type="xs:string"/>
+      <xs:element minOccurs="0" name="birthday" type="xs:string"/>
+      <xs:element minOccurs="0" name="roles" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="rate">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MID"/>
+      <xs:enumeration value="HIGH"/>
+      <xs:enumeration value="LOW"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

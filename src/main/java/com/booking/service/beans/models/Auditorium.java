@@ -7,7 +7,7 @@ import java.util.List;
 
 @XmlRootElement(name = "auditorium")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "booking/auditorium", propOrder = {"id", "name", "seatsNumber", "vipSeats"})
+@XmlType(namespace = "http://booking.com", propOrder = {"id", "name", "seatsNumber", "vipSeats"})
 public class Auditorium {
 
     @XmlAttribute
