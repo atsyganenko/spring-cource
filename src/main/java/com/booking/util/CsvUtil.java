@@ -1,4 +1,4 @@
-package com.booking.service.util;
+package com.booking.util;
 
 import java.util.Arrays;
 import java.util.List;

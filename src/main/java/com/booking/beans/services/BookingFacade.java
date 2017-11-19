@@ -3,7 +3,7 @@ package com.booking.service.beans.services;
 import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.User;
-import com.booking.service.exceptions.TicketBookingException;
+import com.booking.exceptions.TicketBookingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

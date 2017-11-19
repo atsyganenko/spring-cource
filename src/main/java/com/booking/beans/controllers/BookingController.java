@@ -3,8 +3,8 @@ package com.booking.service.beans.controllers;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.services.BookingFacade;
 import com.booking.service.beans.views.TicketsPdfView;
-import com.booking.service.exceptions.AccountOperationsException;
-import com.booking.service.exceptions.TicketBookingException;
+import com.booking.exceptions.AccountOperationsException;
+import com.booking.exceptions.TicketBookingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.security.access.annotation.Secured;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.List;
 import java.util.Map;
 
-import static com.booking.service.exceptions.AccountOperationsException.TOO_MANY_SIMULTANEOUS_OPERATIONS;
+import static com.booking.exceptions.AccountOperationsException.TOO_MANY_SIMULTANEOUS_OPERATIONS;
 
 /**
  * Created by Anastasiia Tsyganenko

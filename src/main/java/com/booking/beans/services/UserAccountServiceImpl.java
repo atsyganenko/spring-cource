@@ -2,11 +2,11 @@ package com.booking.service.beans.services;
 
 import com.booking.service.beans.daos.UserAccountDAO;
 import com.booking.service.beans.models.UserAccount;
-import com.booking.service.exceptions.AccountOperationsException;
+import com.booking.exceptions.AccountOperationsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;;import static com.booking.service.exceptions.AccountOperationsException.*;
+import org.springframework.transaction.annotation.Transactional;;import static com.booking.exceptions.AccountOperationsException.*;
 
 /**
  * Created by Anastasiia Tsyganenko

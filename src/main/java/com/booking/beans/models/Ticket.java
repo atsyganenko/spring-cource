@@ -1,6 +1,6 @@
 package com.booking.service.beans.models;
 
-import com.booking.service.util.CsvUtil;
+import com.booking.util.CsvUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;

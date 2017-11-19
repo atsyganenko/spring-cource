@@ -1,6 +1,6 @@
 package com.booking.service.beans.models;
 
-import com.booking.service.util.CsvUtil;
+import com.booking.util.CsvUtil;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;

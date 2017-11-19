@@ -1,4 +1,4 @@
-package com.booking.service.exceptions;
+package com.booking.exceptions;
 
 /**
  * Created by Anastasiia Tsyganenko
