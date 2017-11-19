@@ -12,8 +12,14 @@ public class Auditorium {
 
     @XmlAttribute
     private long id;
+
+    @XmlElement(required = true)
     private String name;
+
+    @XmlElement(required = true)
     private int seatsNumber;
+
+    @XmlElement(required = true)
     private String vipSeats;
 
     public Auditorium() {

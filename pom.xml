@@ -120,6 +120,7 @@
                                 <source>src/main/java/com/booking/service/beans/models/Auditorium.java</source>
                             </sources>
                             <outputDirectory>src/main/resources/xsd</outputDirectory>
+                            <clearOutputDir>false</clearOutputDir>
                             <transformSchemas>
                                 <transformSchema>
                                     <uri>com/booking</uri>

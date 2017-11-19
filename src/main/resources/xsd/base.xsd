@@ -9,6 +9,4 @@
 
   <xs:element name="user" type="booking:user"/>
 
-
-
 </xs:schema>

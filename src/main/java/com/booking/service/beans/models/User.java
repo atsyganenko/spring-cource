@@ -17,12 +17,20 @@ public class User {
 
     @XmlAttribute
     private long id;
+
+    @XmlElement(required = true)
     private String email;
+
+    @XmlElement(required = true)
     private String name;
+
+    @XmlElement(required = true)
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate birthday;
     @XmlTransient
     private String encryptedPassword;
+
+    @XmlElement(required = true)
     private String roles;
     @XmlTransient
     private UserAccount account;

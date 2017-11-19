@@ -11,16 +11,24 @@ import java.time.LocalDateTime;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(namespace = "http://booking.com", propOrder = {"id", "name", "rate", "basePrice", "dateTime", "auditorium"})
 public class Event {
-    @XmlAttribute
+    @XmlAttribute(required = true)
     private long id;
+
+    @XmlElement(required = true)
     private String name;
+
+    @XmlElement(required = true)
     private Rate rate;
+
     @XmlElement(name = "price")
     private double basePrice;
+
+    @XmlElement(required = true)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime dateTime;
-    @XmlElement
+
+    @XmlElement(required = true)
     private Auditorium auditorium;
 
     public Event() {
