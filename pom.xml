@@ -128,7 +128,7 @@
                                     <toFile>user.xsd</toFile>
                                 </transformSchema>
                                 <transformSchema>
-                                    <uri>http://ws/booking/models</uri>
+                                    <uri>http://booking-web-service</uri>
                                     <toPrefix>booking</toPrefix>
                                     <toFile>booking.xsd</toFile>
                                 </transformSchema>
