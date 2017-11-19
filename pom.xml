@@ -128,11 +128,39 @@
                                     <toFile>user.xsd</toFile>
                                 </transformSchema>
                                 <transformSchema>
-                                    <uri>http://booking.com</uri>
+                                    <uri>http://ws/booking/models</uri>
                                     <toPrefix>booking</toPrefix>
                                     <toFile>booking.xsd</toFile>
                                 </transformSchema>
                             </transformSchemas>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>generate-pojo-from-xsd</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>jaxb2-maven-plugin</artifactId>
+                        <version>2.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>xjc</id>
+                                <goals>
+                                    <goal>xjc</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/xsd/booking.xsd</source>
+                                <source>src/main/resources/xsd/booking_ws.xsd</source>
+                            </sources>
+                            <outputDirectory>${project.basedir}/src/main/java/xjc_auto_generated</outputDirectory>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </plugin>
                 </plugins>
