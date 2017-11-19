@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:booking="http://booking-web-service" version="1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:booking="http://booking.com/booking-web-service" version="1.0">
 
-  <xs:import namespace="http://booking-web-service" schemaLocation="booking.xsd"/>
+  <xs:import namespace="http://booking.com/booking-web-service" schemaLocation="booking.xsd"/>
 
   <xs:element name="auditorium" type="booking:auditorium"/>
 

@@ -34,7 +34,7 @@ public class WebServiceConfiguration extends WsConfigurerAdapter{
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("BookingPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://booking-web-service");
+        wsdl11Definition.setTargetNamespace("http://booking.com/booking-web-service");
         wsdl11Definition.setSchema(bookingSchema);
         return wsdl11Definition;
     }

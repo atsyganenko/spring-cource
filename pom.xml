@@ -128,7 +128,7 @@
                                     <toFile>user.xsd</toFile>
                                 </transformSchema>
                                 <transformSchema>
-                                    <uri>http://booking-web-service</uri>
+                                    <uri>http://booking.com/booking-web-service</uri>
                                     <toPrefix>booking</toPrefix>
                                     <toFile>booking.xsd</toFile>
                                 </transformSchema>
@@ -159,7 +159,7 @@
                                 <source>src/main/resources/xsd/booking.xsd</source>
                                 <source>src/main/resources/xsd/booking_ws.xsd</source>
                             </sources>
-                            <outputDirectory>${project.basedir}/src/main/java/xjc_auto_generated</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </plugin>
