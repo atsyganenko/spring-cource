@@ -1,7 +1,13 @@
 package com.booking.service.beans.models;
 
+import com.booking.service.beans.helpers.xml.LocalDateAdapter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 
 /**
@@ -10,8 +16,10 @@ import java.time.LocalDateTime;
  * Date: 2/1/2016
  * Time: 7:42 PM
  */
-public class Event {
 
+@XmlRootElement(name = "event")
+@XmlType(propOrder = { "id", "name", "rate", "basePrice", "dateTime", "auditorium"})
+public class Event {
     private long id;
     private String name;
     private Rate rate;
@@ -19,7 +27,6 @@ public class Event {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateTime;
     private Auditorium auditorium;
-
 
     public Event() {
     }
@@ -45,6 +52,7 @@ public class Event {
         return id;
     }
 
+    @XmlAttribute
     public void setId(long id) {
         this.id = id;
     }
@@ -69,6 +77,7 @@ public class Event {
         return basePrice;
     }
 
+    @XmlElement(name = "price")
     public void setBasePrice(double basePrice) {
         this.basePrice = basePrice;
     }
@@ -77,6 +86,7 @@ public class Event {
         return dateTime;
     }
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }

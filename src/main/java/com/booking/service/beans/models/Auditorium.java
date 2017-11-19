@@ -2,6 +2,9 @@ package com.booking.service.beans.models;
 
 import com.booking.service.util.CsvUtil;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
 /**
@@ -10,11 +13,14 @@ import java.util.List;
  * Date: 2/1/2016
  * Time: 7:55 PM
  */
+
+@XmlRootElement(name = "auditorium")
+@XmlType(propOrder = {"id", "name", "seatsNumber", "vipSeats"})
 public class Auditorium {
 
-    private long   id;
+    private long id;
     private String name;
-    private int    seatsNumber;
+    private int seatsNumber;
     private String vipSeats;
 
     public Auditorium() {
@@ -43,6 +49,7 @@ public class Auditorium {
         return id;
     }
 
+    @XmlAttribute
     public void setId(long id) {
         this.id = id;
     }
@@ -68,7 +75,7 @@ public class Auditorium {
     }
 
     public List<Integer> getVipSeatsList() {
-        return CsvUtil.fromCsvToList(vipSeats, Integer:: valueOf);
+        return CsvUtil.fromCsvToList(vipSeats, Integer::valueOf);
     }
 
     public void setVipSeatsList(List<Integer> vipSeats) {
@@ -110,10 +117,10 @@ public class Auditorium {
     @Override
     public String toString() {
         return "Auditorium{" +
-               "id=" + id +
-               ", name='" + name + '\'' +
-               ", seatsNumber=" + seatsNumber +
-               ", vipSeats=" + vipSeats +
-               '}';
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", seatsNumber=" + seatsNumber +
+                ", vipSeats=" + vipSeats +
+                '}';
     }
 }
