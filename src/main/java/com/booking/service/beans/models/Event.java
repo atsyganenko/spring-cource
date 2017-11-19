@@ -1,31 +1,26 @@
 package com.booking.service.beans.models;
 
-import com.booking.service.beans.helpers.xml.LocalDateAdapter;
+import com.booking.service.beans.helpers.xml.LocalDateTimeAdapter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Dmytro_Babichev
- * Date: 2/1/2016
- * Time: 7:42 PM
- */
-
 @XmlRootElement(name = "event")
-@XmlType(propOrder = { "id", "name", "rate", "basePrice", "dateTime", "auditorium"})
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(namespace = "booking/event", propOrder = {"id", "name", "rate", "basePrice", "dateTime", "auditorium"})
 public class Event {
+    @XmlAttribute
     private long id;
     private String name;
     private Rate rate;
+    @XmlElement(name = "price")
     private double basePrice;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime dateTime;
+    @XmlElement
     private Auditorium auditorium;
 
     public Event() {
@@ -52,7 +47,6 @@ public class Event {
         return id;
     }
 
-    @XmlAttribute
     public void setId(long id) {
         this.id = id;
     }
@@ -77,7 +71,6 @@ public class Event {
         return basePrice;
     }
 
-    @XmlElement(name = "price")
     public void setBasePrice(double basePrice) {
         this.basePrice = basePrice;
     }
@@ -86,7 +79,6 @@ public class Event {
         return dateTime;
     }
 
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }

@@ -2,22 +2,15 @@ package com.booking.service.beans.models;
 
 import com.booking.service.util.CsvUtil;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Dmytro_Babichev
- * Date: 2/1/2016
- * Time: 7:55 PM
- */
-
 @XmlRootElement(name = "auditorium")
-@XmlType(propOrder = {"id", "name", "seatsNumber", "vipSeats"})
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(namespace = "booking/auditorium", propOrder = {"id", "name", "seatsNumber", "vipSeats"})
 public class Auditorium {
 
+    @XmlAttribute
     private long id;
     private String name;
     private int seatsNumber;
@@ -49,7 +42,6 @@ public class Auditorium {
         return id;
     }
 
-    @XmlAttribute
     public void setId(long id) {
         this.id = id;
     }

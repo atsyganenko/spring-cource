@@ -2,10 +2,7 @@ package com.booking.service.beans.models;
 
 import com.booking.service.beans.helpers.xml.LocalDateAdapter;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -13,23 +10,21 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Dmytro_Babichev
- * Date: 2/1/2016
- * Time: 7:35 PM
- */
-
 @XmlRootElement(name = "user")
-@XmlType(propOrder = { "id", "name", "email", "birthday", "roles"})
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(namespace = "booking/user", propOrder = {"id", "name", "email", "birthday", "roles"})
 public class User {
 
+    @XmlAttribute
     private long id;
     private String email;
     private String name;
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate birthday;
+    @XmlTransient
     private String encryptedPassword;
     private String roles;
+    @XmlTransient
     private UserAccount account;
 
     public User() {
@@ -46,7 +41,7 @@ public class User {
         return encryptedPassword;
     }
 
-    @XmlTransient
+
     public void setEncryptedPassword(String encryptedPassword) {
         this.encryptedPassword = encryptedPassword;
     }
@@ -71,7 +66,6 @@ public class User {
         return account;
     }
 
-    @XmlTransient
     public void setAccount(UserAccount account) {
         this.account = account;
     }
@@ -88,7 +82,6 @@ public class User {
         return id;
     }
 
-    @XmlAttribute
     public void setId(long id) {
         this.id = id;
     }
@@ -113,7 +106,6 @@ public class User {
         return birthday;
     }
 
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
