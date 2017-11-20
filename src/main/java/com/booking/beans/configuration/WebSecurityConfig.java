@@ -50,7 +50,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeRequests().anyRequest().hasRole(UserRole.REGISTERED_USER.name())
+                .authorizeRequests().antMatchers("/ws/**").permitAll()
+                .and().authorizeRequests().anyRequest().hasRole(UserRole.REGISTERED_USER.name())
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().rememberMe().rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository).tokenValiditySeconds(36000)
