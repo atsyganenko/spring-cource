@@ -7,6 +7,7 @@ import com.booking.service.beans.services.BookingFacade;
 import com.booking.service.beans.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,8 @@ import java.util.List;
 @RequestMapping("rest")
 public class BookingRestController {
 
+    private static final String JSON = "application/json";
+    private static final String PDF = "application/pdf";
     private final BookingFacade bookingFacade;
     private final EventService eventService;
 
@@ -31,44 +34,44 @@ public class BookingRestController {
         this.eventService = eventService;
     }
 
-    @RequestMapping(value = "account", method = RequestMethod.POST)
+    @RequestMapping(value = "account", method = RequestMethod.POST, produces = {JSON})
     public UserAccount topUpAccount(@RequestBody long amount) {
         bookingFacade.topUpAccount(amount);
         return bookingFacade.getUserAccount();
     }
 
-    @RequestMapping(value = "account", method = RequestMethod.GET)
+    @RequestMapping(value = "account", method = RequestMethod.GET, produces = {JSON})
     public UserAccount getAccount() {
         return bookingFacade.getUserAccount();
     }
 
-    @RequestMapping(value = "tickets", method = RequestMethod.GET)
+    @RequestMapping(value = "tickets", method = RequestMethod.GET, produces = {JSON, PDF})
     public List<Ticket> getBookedTicketsByUser() {
         return bookingFacade.getBookedTickets();
     }
 
     @Secured("ROLE_BOOKING_MANAGER")
-    @RequestMapping(value = "tickets/{eventId}", method = RequestMethod.GET)
+    @RequestMapping(value = "tickets/{eventId}", method = RequestMethod.GET, produces = {JSON, PDF})
     public List<Ticket> getBookedTicketsByUser(@PathVariable long eventId) {
         return bookingFacade.getBookedTicketsForEvent(eventId);
     }
 
-    @RequestMapping(value = "tickets", method = RequestMethod.POST)
+    @RequestMapping(value = "tickets", method = RequestMethod.POST, produces = {JSON, PDF})
     public Ticket bookTicket(@RequestBody Ticket ticket) {
         return bookingFacade.bookTicketForEvent(Long.toString(ticket.getEvent().getId()), ticket.getSeats());
     }
 
-    @RequestMapping(value = "events", method = RequestMethod.GET)
+    @RequestMapping(value = "events", method = RequestMethod.GET, produces = {JSON})
     public List<Event> getAllEvents() {
         return eventService.getAll();
     }
 
-    @RequestMapping(value = "events/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "events/{name}", method = RequestMethod.GET, produces = {JSON})
     public List<Event> getEventsByName(@PathVariable String name) {
         return eventService.getByName(name);
     }
 
-    @RequestMapping(value = "event/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "event/{id}", method = RequestMethod.GET, produces = {JSON})
     public Event getEventsById(@PathVariable long id) {
         return eventService.getById(id);
     }
