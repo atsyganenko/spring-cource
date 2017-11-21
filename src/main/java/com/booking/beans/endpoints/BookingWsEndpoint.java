@@ -1,6 +1,5 @@
 package com.booking.beans.endpoints;
 
-import com.booking.beans.models.*;
 import com.booking.beans.services.AuditoriumService;
 import com.booking.beans.services.EventService;
 import com.booking.beans.services.UserService;
