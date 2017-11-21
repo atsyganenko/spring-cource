@@ -115,9 +115,9 @@
                         </executions>
                         <configuration>
                             <sources>
-                                <source>src/main/java/com/booking/service/beans/models/User.java</source>
-                                <source>src/main/java/com/booking/service/beans/models/Event.java</source>
-                                <source>src/main/java/com/booking/service/beans/models/Auditorium.java</source>
+                                <source>src/main/java/com/booking/beans/models/User.java</source>
+                                <source>src/main/java/com/booking/beans/models/Event.java</source>
+                                <source>src/main/java/com/booking/beans/models/Auditorium.java</source>
                             </sources>
                             <outputDirectory>src/main/resources/xsd</outputDirectory>
                             <clearOutputDir>false</clearOutputDir>
