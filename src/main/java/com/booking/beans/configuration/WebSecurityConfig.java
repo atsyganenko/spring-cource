@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -51,12 +52,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests().antMatchers("/ws/**").permitAll()
-                .and().authorizeRequests().anyRequest().hasRole(UserRole.REGISTERED_USER.name())
+                .and()
+                .authorizeRequests().anyRequest().hasRole(UserRole.REGISTERED_USER.name())
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().rememberMe().rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository).tokenValiditySeconds(36000)
                 .and()
                 .logout().logoutUrl("/logout").clearAuthentication(true).deleteCookies("remember-me").permitAll();
+    }
+
+    @Override
+    public void configure(WebSecurity webSecurity) throws Exception {
+        webSecurity.ignoring().antMatchers("/ws/**");
     }
 
     @Override
