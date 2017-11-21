@@ -19,13 +19,13 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ContextConfiguration(classes = {Application.class, WebServiceClientConfiguration.class, AuditoriumConfiguration.class, StrategiesConfiguration.class, WebServiceConfiguration.class,
+@ContextConfiguration(classes = {Application.class, WsClientConfiguration.class, AuditoriumConfiguration.class, StrategiesConfiguration.class, WebServiceConfiguration.class,
         })
 public class WebServiceClientTest {
 
     @Autowired
     WebServiceTemplate webServiceTemplate;
-    private WebServiceClient webServiceClient;
+    private BookingWebServiceClient webServiceClient;
 
     @LocalServerPort
     private int port = 0;
@@ -33,7 +33,7 @@ public class WebServiceClientTest {
     @Before
     public void setUp() {
         webServiceTemplate.setDefaultUri("http://localhost:" + port + "/ws");
-        webServiceClient = new WebServiceClient(webServiceTemplate);
+        webServiceClient = new BookingWebServiceClient(webServiceTemplate);
     }
 
     @Test

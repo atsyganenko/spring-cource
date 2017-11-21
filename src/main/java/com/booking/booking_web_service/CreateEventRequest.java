@@ -10,6 +10,7 @@ package com.booking.booking_web_service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="userEmail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element ref="{}event"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -35,35 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "userEmail"
+    "event"
 })
-@XmlRootElement(name = "getUserRequest")
-public class GetUserRequest {
+@XmlRootElement(name = "createEventRequest")
+public class CreateEventRequest {
 
-    protected String userEmail;
+    @XmlElement(required = true)
+    protected Event event;
 
     /**
-     * Gets the value of the userEmail property.
+     * Gets the value of the event property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Event }
      *     
      */
-    public String getUserEmail() {
-        return userEmail;
+    public Event getEvent() {
+        return event;
     }
 
     /**
-     * Sets the value of the userEmail property.
+     * Sets the value of the event property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Event }
      *     
      */
-    public void setUserEmail(String value) {
-        this.userEmail = value;
+    public void setEvent(Event value) {
+        this.event = value;
     }
 
 }
