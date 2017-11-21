@@ -45,7 +45,7 @@ public class BookingFacade {
         return getCurrentUser().getAccount();
     }
 
-    public void bookTicketForEvent(String eventId, String seats) {
+    public Ticket bookTicketForEvent(String eventId, String seats) {
         Ticket ticket = new Ticket();
         User user = getCurrentUser();
         Event event = eventService.getById(Long.parseLong(eventId));
@@ -58,7 +58,7 @@ public class BookingFacade {
         ticket.setSeats(seats);
         ticket.setPrice(getTicketPrice(ticket));
         userAccountService.withdrawMoney(user.getAccount(), ticket.getPrice());
-        ticketsService.bookTicket(user, ticket);
+        return ticketsService.bookTicket(user, ticket);
     }
 
     public List<Ticket> getBookedTickets() {
