@@ -1,7 +1,5 @@
 package com.booking.service.beans.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
