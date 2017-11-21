@@ -51,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests().anyRequest().hasRole(UserRole.REGISTERED_USER.name())
+                .and().httpBasic()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().rememberMe().rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository).tokenValiditySeconds(36000)
