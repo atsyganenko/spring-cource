@@ -6,6 +6,8 @@ import com.booking.service.beans.models.UserAccount;
 import com.booking.service.beans.services.BookingFacade;
 import com.booking.service.beans.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,13 +43,13 @@ public class BookingRestController {
     }
 
     @RequestMapping(value = "tickets", method = RequestMethod.GET)
-    public List<Ticket> getBookedTicketByUser() {
+    public List<Ticket> getBookedTicketsByUser() {
         return bookingFacade.getBookedTickets();
     }
 
     @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(value = "tickets/{eventId}", method = RequestMethod.GET)
-    public List<Ticket> getBookedTicketByUser(@PathVariable long eventId) {
+    public List<Ticket> getBookedTicketsByUser(@PathVariable long eventId) {
         return bookingFacade.getBookedTicketsForEvent(eventId);
     }
 
@@ -57,7 +59,7 @@ public class BookingRestController {
     }
 
     @RequestMapping(value = "events", method = RequestMethod.GET)
-    public List<Event> getEvents() {
+    public List<Event> getAllEvents() {
         return eventService.getAll();
     }
 
@@ -67,7 +69,18 @@ public class BookingRestController {
     }
 
     @RequestMapping(value = "event/{id}", method = RequestMethod.GET)
-    public Event getEventsByName(@PathVariable long id) {
+    public Event getEventsById(@PathVariable long id) {
         return eventService.getById(id);
+    }
+
+    @RequestMapping(value = "event/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteEvent(@PathVariable long id) {
+        eventService.remove(eventService.getById(id));
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "event", method = RequestMethod.DELETE)
+    public Event createEvent(@RequestBody Event event) {
+        return eventService.create(event);
     }
 }
