@@ -6,10 +6,7 @@
   <xs:complexType name="auditorium">
     <xs:sequence>
       <xs:element name="name" type="xs:string"/>
-      <xs:element name="seatsNumber" type="xs:int"/>
-      <xs:element name="vipSeats" type="xs:string"/>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:long" use="required"/>
   </xs:complexType>
 
   <xs:complexType name="event">
@@ -31,7 +28,6 @@
       <xs:element name="roles" type="xs:string"/>
       <xs:element name="encryptedPassword" type="xs:string"/>
     </xs:sequence>
-    <xs:attribute name="id" type="xs:long" use="required"/>
   </xs:complexType>
 
   <xs:simpleType name="rate">

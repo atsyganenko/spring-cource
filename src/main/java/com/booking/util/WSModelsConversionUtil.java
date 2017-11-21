@@ -23,10 +23,9 @@ public class WSModelsConversionUtil {
             return null;
         }
         User result = new User();
-        result.setId(userToConvert.getId());
         result.setName(userToConvert.getName());
         result.setEmail(userToConvert.getEmail());
-        result.setBirthday(userToConvert.getBirthday().format(DATE_FORMATTER));
+        result.setBirthday(localDateToStr(userToConvert.getBirthday()));
         result.setRoles(userToConvert.getRoles());
         return result;
     }
@@ -36,10 +35,9 @@ public class WSModelsConversionUtil {
             return null;
         }
         com.booking.beans.models.User result = new com.booking.beans.models.User();
-        result.setId(wsUser.getId());
         result.setName(wsUser.getName());
         result.setEmail(wsUser.getEmail());
-        result.setBirthday(LocalDate.parse(wsUser.getBirthday()));
+        result.setBirthday(LocalDate.parse(wsUser.getBirthday(), DATE_FORMATTER));
         result.setRoles(wsUser.getRoles());
         result.setEncryptedPassword(wsUser.getEncryptedPassword());
         return result;
@@ -53,10 +51,18 @@ public class WSModelsConversionUtil {
         event.setId(eventToConvert.getId());
         event.setName(eventToConvert.getName());
         event.setAuditorium(convertToWsAuditorium(eventToConvert.getAuditorium()));
-        event.setDateTime(eventToConvert.getDateTime().format(DATE_TIME_FORMATTER));
+        event.setDateTime(localDateTimeToStr(eventToConvert.getDateTime()));
         event.setPrice(eventToConvert.getBasePrice());
         event.setRate(Rate.valueOf(eventToConvert.getRate().name()));
         return event;
+    }
+
+    public static String localDateToStr(LocalDate localDate) {
+        return localDate.format(DATE_FORMATTER);
+    }
+
+    public static String localDateTimeToStr(LocalDateTime localDateTime) {
+        return localDateTime.format(DATE_TIME_FORMATTER);
     }
 
     public static com.booking.beans.models.Event convertToEvent(Event wsEvent) {
@@ -67,7 +73,7 @@ public class WSModelsConversionUtil {
         event.setId(wsEvent.getId());
         event.setName(wsEvent.getName());
         event.setAuditorium(convertToAuditorium(wsEvent.getAuditorium()));
-        event.setDateTime(LocalDateTime.parse(wsEvent.getDateTime()));
+        event.setDateTime(LocalDateTime.parse(wsEvent.getDateTime(), DATE_TIME_FORMATTER));
         event.setBasePrice(wsEvent.getPrice());
         event.setRate(com.booking.beans.models.Rate.valueOf(wsEvent.getRate().name()));
         return event;
@@ -78,10 +84,7 @@ public class WSModelsConversionUtil {
             return null;
         }
         Auditorium result = new Auditorium();
-        result.setId(auditoriumToConvert.getId());
         result.setName(auditoriumToConvert.getName());
-        result.setSeatsNumber(auditoriumToConvert.getSeatsNumber());
-        result.setVipSeats(auditoriumToConvert.getVipSeats());
         return result;
     }
 
@@ -90,10 +93,7 @@ public class WSModelsConversionUtil {
             return null;
         }
         com.booking.beans.models.Auditorium result = new com.booking.beans.models.Auditorium();
-        result.setId(wsAuditorium.getId());
         result.setName(wsAuditorium.getName());
-        result.setSeatsNumber(wsAuditorium.getSeatsNumber());
-        result.setVipSeats(wsAuditorium.getVipSeats());
         return result;
     }
 }

@@ -69,11 +69,14 @@ public class BookingWebServiceClient {
         return response.isSuccess();
     }
 
-    public boolean createEvent(Event event) {
+    /**
+     * @return eventId if event successfully created or Optional.empty() if failed
+     * **/
+    public Optional<Long> createEvent(Event event) {
         CreateEventRequest createEventRequest = new CreateEventRequest();
         createEventRequest.setEvent(event);
         CreateEventResponse response = (CreateEventResponse) webServiceTemplate.marshalSendAndReceive(createEventRequest);
-        return response.isSuccess();
+        return response.isSuccess() ? Optional.of(response.getNewEventId()) : Optional.empty();
     }
 
 }

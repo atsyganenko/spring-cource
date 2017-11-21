@@ -78,6 +78,7 @@
     <xs:element name="createEventResponse">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="newEventId" type="xs:long"/>
                 <xs:element name="success" type="xs:boolean"/>
             </xs:sequence>
         </xs:complexType>

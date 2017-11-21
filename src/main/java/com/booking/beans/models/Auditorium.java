@@ -7,19 +7,19 @@ import java.util.List;
 
 @XmlRootElement(name = "auditorium")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "http://booking.com/booking-web-service", propOrder = {"id", "name", "seatsNumber", "vipSeats"})
+@XmlType(namespace = "http://booking.com/booking-web-service")
 public class Auditorium {
 
-    @XmlAttribute
+    @XmlTransient
     private long id;
 
     @XmlElement(required = true)
     private String name;
 
-    @XmlElement(required = true)
+    @XmlTransient
     private int seatsNumber;
 
-    @XmlElement(required = true)
+    @XmlTransient
     private String vipSeats;
 
     public Auditorium() {

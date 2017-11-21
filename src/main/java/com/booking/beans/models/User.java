@@ -12,10 +12,10 @@ import java.util.Set;
 
 @XmlRootElement(name = "user")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "http://booking.com/booking-web-service", propOrder = {"id", "name", "email", "birthday", "roles", "encryptedPassword"})
+@XmlType(namespace = "http://booking.com/booking-web-service", propOrder = {"name", "email", "birthday", "roles", "encryptedPassword"})
 public class User {
 
-    @XmlAttribute
+    @XmlTransient
     private long id;
 
     @XmlElement(required = true)
