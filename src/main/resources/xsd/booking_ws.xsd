@@ -6,15 +6,47 @@
     <xs:element name="getUserRequest">
         <xs:complexType>
             <xs:sequence>
+                <xs:element minOccurs="0" name="userEmail" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUsersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteUserRequest">
+        <xs:complexType>
+            <xs:sequence>
                 <xs:element name="userEmail" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getUserResponse">
+    <xs:element name="deleteUserResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="user"/>
+                <xs:element name="success" type="xs:boolean"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

@@ -1,11 +1,12 @@
 package com.booking.ws_client;
 
-import com.booking.booking_web_service.GetUserRequest;
-import com.booking.booking_web_service.GetUserResponse;
-import com.booking.booking_web_service.User;
+import com.booking.booking_web_service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.WebServiceTemplate;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Anastasiia Tsyganenko
@@ -21,11 +22,31 @@ public class WebServiceClient {
         this.webServiceTemplate = webServiceTemplate;
     }
 
-    public User getUser(String email) {
+    public Optional<User> getUser(String email) {
         GetUserRequest userRequest = new GetUserRequest();
         userRequest.setUserEmail(email);
         GetUserResponse userResponse = (GetUserResponse) webServiceTemplate.marshalSendAndReceive(userRequest);
+        return userResponse.getUser().stream().findAny();
+    }
+
+    public List<User> getAllUsers() {
+        GetUserRequest userRequest = new GetUserRequest();
+        GetUserResponse userResponse = (GetUserResponse) webServiceTemplate.marshalSendAndReceive(userRequest);
         return userResponse.getUser();
+    }
+
+    public boolean deleteUser(String email) {
+        DeleteUserRequest deleteUserRequest = new DeleteUserRequest();
+        deleteUserRequest.setUserEmail(email);
+        DeleteUserResponse response = (DeleteUserResponse) webServiceTemplate.marshalSendAndReceive(deleteUserRequest);
+        return response.isSuccess();
+    }
+
+    public boolean createUser(User user) {
+        CreateUserRequest deleteUserRequest = new CreateUserRequest();
+        deleteUserRequest.setUser(user);
+        DeleteUserResponse response = (DeleteUserResponse) webServiceTemplate.marshalSendAndReceive(deleteUserRequest);
+        return response.isSuccess();
     }
 
 }

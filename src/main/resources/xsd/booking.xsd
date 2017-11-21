@@ -29,6 +29,7 @@
       <xs:element name="email" type="xs:string"/>
       <xs:element name="birthday" type="xs:string"/>
       <xs:element name="roles" type="xs:string"/>
+      <xs:element name="encryptedPassword" type="xs:string"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:long" use="required"/>
   </xs:complexType>

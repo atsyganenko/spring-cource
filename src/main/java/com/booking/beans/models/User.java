@@ -12,7 +12,7 @@ import java.util.Set;
 
 @XmlRootElement(name = "user")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "http://booking.com/booking-web-service", propOrder = {"id", "name", "email", "birthday", "roles"})
+@XmlType(namespace = "http://booking.com/booking-web-service", propOrder = {"id", "name", "email", "birthday", "roles", "encryptedPassword"})
 public class User {
 
     @XmlAttribute
@@ -27,7 +27,7 @@ public class User {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate birthday;
-    @XmlTransient
+    @XmlElement(required = true)
     private String encryptedPassword;
 
     @XmlElement(required = true)
