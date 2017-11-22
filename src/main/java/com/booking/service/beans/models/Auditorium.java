@@ -1,6 +1,7 @@
 package com.booking.service.beans.models;
 
 import com.booking.service.util.CsvUtil;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
@@ -10,11 +11,12 @@ import java.util.List;
  * Date: 2/1/2016
  * Time: 7:55 PM
  */
+
 public class Auditorium {
 
-    private long   id;
+    private long id;
     private String name;
-    private int    seatsNumber;
+    private int seatsNumber;
     private String vipSeats;
 
     public Auditorium() {
@@ -68,7 +70,7 @@ public class Auditorium {
     }
 
     public List<Integer> getVipSeatsList() {
-        return CsvUtil.fromCsvToList(vipSeats, Integer:: valueOf);
+        return CsvUtil.fromCsvToList(vipSeats, Integer::valueOf);
     }
 
     public void setVipSeatsList(List<Integer> vipSeats) {
@@ -110,10 +112,10 @@ public class Auditorium {
     @Override
     public String toString() {
         return "Auditorium{" +
-               "id=" + id +
-               ", name='" + name + '\'' +
-               ", seatsNumber=" + seatsNumber +
-               ", vipSeats=" + vipSeats +
-               '}';
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", seatsNumber=" + seatsNumber +
+                ", vipSeats=" + vipSeats +
+                '}';
     }
 }

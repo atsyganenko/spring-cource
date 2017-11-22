@@ -55,8 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().rememberMe().rememberMeParameter("remember-me")
                 .tokenRepository(persistentTokenRepository).tokenValiditySeconds(36000)
-                .and()
-                .logout().logoutUrl("/logout").clearAuthentication(true).deleteCookies("remember-me").permitAll();
+                .and().csrf().ignoringAntMatchers("/rest/**")
+                .and().logout().logoutUrl("/logout").clearAuthentication(true).deleteCookies("remember-me").permitAll();
     }
 
     @Override
