@@ -5,12 +5,11 @@ import com.booking.service.beans.models.Event;
 import com.booking.service.beans.models.Ticket;
 import com.booking.service.beans.models.UserAccount;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -45,6 +44,14 @@ public class BookingRestClient {
         return getForListOfEntities(Ticket.class, TICKETS_RELATIVE_URL, Long.toString(eventId));
     }
 
+    public ResponseEntity getBookedTicketsByUserInPdf() {
+        return getBookedTicketsInPdf();
+    }
+
+    public ResponseEntity getBookedTicketsForEventInPdf(long eventId) {
+        return getBookedTicketsInPdf(Long.toString(eventId));
+    }
+
     public List<Ticket> getBookedTicketsByUser() {
         return getForListOfEntities(Ticket.class, TICKETS_RELATIVE_URL);
     }
@@ -71,6 +78,13 @@ public class BookingRestClient {
 
     public Auditorium getAuditorium(String name) {
         return getForEntity(Auditorium.class, AUDITORIUMS_RELATIVE_URL, name);
+    }
+
+    private ResponseEntity<byte[]> getBookedTicketsInPdf(String... urlParams) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_PDF));
+        String url = buildUrl(TICKETS_RELATIVE_URL, urlParams);
+        return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>("params", headers), byte[].class);
     }
 
     private <T> T getForEntity(Class<T> responseType, String relativeUrl, String... pathParams) {
