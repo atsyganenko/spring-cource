@@ -7,7 +7,6 @@ import com.booking.service.beans.services.BookingFacade;
 import com.booking.service.beans.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -71,18 +70,18 @@ public class BookingRestController {
         return eventService.getByName(name);
     }
 
-    @RequestMapping(value = "event/{id}", method = RequestMethod.GET, produces = {JSON})
+    @RequestMapping(value = "events/{id}", method = RequestMethod.GET, produces = {JSON})
     public Event getEventsById(@PathVariable long id) {
         return eventService.getById(id);
     }
 
-    @RequestMapping(value = "event/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "events/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteEvent(@PathVariable long id) {
         eventService.remove(eventService.getById(id));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "event", method = RequestMethod.DELETE)
+    @RequestMapping(value = "events", method = RequestMethod.DELETE)
     public Event createEvent(@RequestBody Event event) {
         return eventService.create(event);
     }
