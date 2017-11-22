@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,6 +19,11 @@ import java.util.List;
  */
 
 public class BookingRestClient {
+
+    private static final String ACCOUNT_RELATIVE_URL = "/rest/account";
+    private static final String TICKETS_RELATIVE_URL = "/rest/tickets";
+    private static final String EVENTS_RELATIVE_URL = "/rest/events";
+    private static final String AUDITORIUMS_RELATIVE_URL = "/rest/auditoriums";
 
     private final RestTemplate restTemplate;
     private final String baseUrl;
@@ -28,52 +34,64 @@ public class BookingRestClient {
     }
 
     public UserAccount getAccount() {
-        return restTemplate.getForEntity(baseUrl + "/rest/account", UserAccount.class).getBody();
+        return getForEntity(UserAccount.class, ACCOUNT_RELATIVE_URL);
     }
 
     public UserAccount topUpAccount(long amount) {
-        HttpEntity<Long> request = new HttpEntity<>(amount);
-        return restTemplate.postForEntity(baseUrl + "/rest/account", request, UserAccount.class).getBody();
+        return postForEntity(UserAccount.class, amount, ACCOUNT_RELATIVE_URL);
     }
 
     public List<Ticket> getBookedTicketsForEvent(long eventId) {
-        ResponseEntity<List<Ticket>> responseEntity = restTemplate.exchange(baseUrl + "/rest/tickets/" + eventId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Ticket>>() {
-        });
-        return responseEntity.getBody();
+        return getForListOfEntities(Ticket.class, TICKETS_RELATIVE_URL, Long.toString(eventId));
     }
 
     public List<Ticket> getBookedTicketsByUser() {
-        ResponseEntity<List<Ticket>> responseEntity = restTemplate.exchange(baseUrl + "/rest/tickets/", HttpMethod.GET, null, new ParameterizedTypeReference<List<Ticket>>() {
-        });
-        return responseEntity.getBody();
+        return getForListOfEntities(Ticket.class, TICKETS_RELATIVE_URL);
     }
 
     public Ticket bookTicket(Ticket ticket) {
-        HttpEntity<Ticket> request = new HttpEntity<>(ticket);
-        return restTemplate.postForEntity(baseUrl + "/rest/tickets", request, Ticket.class).getBody();
+        return postForEntity(Ticket.class, ticket, TICKETS_RELATIVE_URL);
     }
 
     public List<Event> getAllEvents() {
-        ResponseEntity<List<Event>> responseEntity = restTemplate.exchange(baseUrl + "/rest/events", HttpMethod.GET, null, new ParameterizedTypeReference<List<Event>>() {
+        return getForListOfEntities(Event.class, EVENTS_RELATIVE_URL);
+    }
+
+    public Event getEventById(long eventId) {
+        return getForEntity(Event.class, EVENTS_RELATIVE_URL, Long.toString(eventId));
+    }
+
+    public Event createEvent(Event event) {
+        return postForEntity(Event.class, event, EVENTS_RELATIVE_URL);
+    }
+
+    public void deleteEvent(long eventId) {
+        restTemplate.delete(buildUrl(EVENTS_RELATIVE_URL, Long.toString(eventId)));
+    }
+
+    public Auditorium getAuditorium(String name) {
+        return getForEntity(Auditorium.class, AUDITORIUMS_RELATIVE_URL, name);
+    }
+
+    private <T> T getForEntity(Class<T> responseType, String relativeUrl, String... pathParams) {
+        return restTemplate.getForEntity(buildUrl(relativeUrl, pathParams), responseType).getBody();
+    }
+
+    private <T> List<T> getForListOfEntities(Class<T> responseType, String relativeUrl, String... pathParams) {
+        ResponseEntity<List<T>> responseEntity = restTemplate.exchange(buildUrl(relativeUrl, pathParams), HttpMethod.GET, null, new ParameterizedTypeReference<List<T>>() {
         });
         return responseEntity.getBody();
     }
 
-    public Event getEventById(long id) {
-        return restTemplate.getForEntity(baseUrl + "/rest/events/" + id, Event.class).getBody();
+    private <B, T> T postForEntity(Class<T> responseType, B requestBody, String relativeUrl, String... pathParams) {
+        HttpEntity<B> request = new HttpEntity<>(requestBody);
+        return restTemplate.postForEntity(buildUrl(relativeUrl, pathParams), request, responseType).getBody();
     }
 
-    public Event createEvent(Event event) {
-        HttpEntity<Event> request = new HttpEntity<>(event);
-        return restTemplate.postForEntity(baseUrl + "/rest/events", request, Event.class).getBody();
+    private String buildUrl(String relativeUrl, String... pathParams) {
+        StringBuilder urlBuilder = new StringBuilder(baseUrl);
+        urlBuilder.append(relativeUrl);
+        Arrays.stream(pathParams).forEach(param -> urlBuilder.append("/").append(param));
+        return urlBuilder.toString();
     }
-
-    public void deleteEvent(long eventId) {
-        restTemplate.delete(baseUrl + "/rest/events/" + eventId);
-    }
-
-    public Auditorium getAuditorium(String name) {
-        return restTemplate.getForEntity(baseUrl + "/rest/auditoriums/" + name, Auditorium.class).getBody();
-    }
-
 }
